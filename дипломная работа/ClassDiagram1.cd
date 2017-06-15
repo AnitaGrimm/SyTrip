@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="дипломная_работа.Helpers.AmadeusAPI">
+    <Position X="1.75" Y="1.25" Width="5.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Location" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Room">
+        <TypeIdentifier>
+          <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Price">
+        <TypeIdentifier>
+          <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Award" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Result">
+        <TypeIdentifier>
+          <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.HotelImage" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.RoomTypeInfo">
+        <TypeIdentifier>
+          <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Querry">
+        <TypeIdentifier>
+          <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Contact" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Amenity" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Address" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Response">
+        <TypeIdentifier>
+          <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Rate">
+        <TypeIdentifier>
+          <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAEAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\AmadeusAPI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

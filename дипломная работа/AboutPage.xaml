@@ -1,0 +1,54 @@
+﻿<Page x:Name="page" x:Class="дипломная_работа.AboutPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:дипломная_работа"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="500"
+      Title="О программе">
+
+    <Grid x:Name="grid" Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="3" Grid.Row="3" Background="#7FFFFFFF">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+            <Image Grid.Column="1" Grid.Row="1"  Source="Resources/logo.gif"/>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontFamily="Calibri" FontSize="14" Width="{Binding ElementName=page, Mode=OneWay}" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1" Margin="3,44" Grid.RowSpan="2" >
+            Приложение для решени задачи подбора вариантов путешествий с заданными ограничениями по бюджету, количеству дней прибывания и предпочтений пользователя.
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontFamily="Calibri" FontSize="14" Width="{Binding ElementName=page, Mode=OneWay}" TextWrapping="Wrap" Grid.Column="1" Grid.Row="3" Margin="35,23,35,3" >
+            (c) Замалетдинова Анна Дмитриевна, студентка группы МОиАИС134 ТюмГУ, 2017 г.
+            </TextBlock>
+        </Grid>
+        <Button Click="Button_Click" Grid.Column="1" Grid.Row="1">
+            <Button.Background>
+                <ImageBrush ImageSource="Resources/Back_button_image.png" Stretch="UniformToFill"/>
+            </Button.Background>
+        </Button>
+
+    </Grid>
+</Page>

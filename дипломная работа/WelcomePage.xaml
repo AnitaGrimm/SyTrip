@@ -1,0 +1,40 @@
+﻿<Page x:Class="дипломная_работа.WelcomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:дипломная_работа"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="500"
+      Title="WelcomePage">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Resources/zheleznaya_doroga_1680x1050_5474.jpg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" Grid.RowSpan="5" Background="#7FE4E4E4"></Grid>
+        <Image Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Source="Resources/logo.gif" Margin="16,0,15,0" />
+        <Button Grid.ColumnSpan="2" Content="Составить маршрут" Grid.Column="2" Grid.Row="4" Click="Button_Click" FontFamily="Calibri" FontSize="16" Background="#E5E8E8E8" BorderBrush="#E5E8E8E8" />
+        <Button Grid.ColumnSpan="2" Content="О программе" Grid.Column="5" Grid.Row="4" FontFamily="Calibri" FontSize="16" Click="Button_Click_1" Background="#E5E8E8E8" BorderBrush="#E5E8E8E8"/>
+    </Grid>
+</Page>
