@@ -100,7 +100,7 @@ namespace дипломная_работа.Helpers
             public static Location Parse(string s)
             {
                 Regex rx = new Regex("([\n"+@"\s"+"\r]*)\"latitude\""+@"\s"+"*:"+@"\s"+"*(?<latitude>[0-9.-]+),([\n"+@"\s"+"\r]*)\"longitude\""+@"\s"+"*:"+@"\s"+"*(?<longitude>[0-9.-]+)([\n"+@"\s"+"\r]*)");
-                var match = rx.Match(s);
+                var match = rxMatch(s);
                 try
                 {
                     return new Location { latitude = double.Parse(match.Groups["latitude"].Value), longitude = double.Parse(match.Groups["longitude"].Value) };
