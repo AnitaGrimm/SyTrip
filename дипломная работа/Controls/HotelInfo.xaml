@@ -9,31 +9,28 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="5"/>
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="5"/>
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="5"/>
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="5"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="5"/>
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="175"/>
+            <ColumnDefinition Width="125"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="HotelName" Grid.Column="1" Grid.Row="1"/>
-        <TextBlock x:Name="HotelRoomInfo" Grid.Column="1" Grid.Row="3"/>
-        <TextBlock x:Name="HotelRoomAddress" Grid.Column="1" Grid.Row="5"/>
-        <TextBlock x:Name="HotelRoomDescription" Grid.Column="1" Grid.Row="7"/>
-        <TextBlock x:Name="HotelRoomStars" Grid.Column="1" Grid.Row="9"/>
-        <TextBlock x:Name="HotelRoomPrice" Grid.Column="1" Grid.Row="11"/>
-        <Image x:Name="HotelImage" Grid.Column="2" Grid.Row="2" Grid.RowSpan="7" Stretch="UniformToFill"></Image>
-    </Grid>
+        <TextBlock x:Name="HotelName" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap"/>
+        <Image x:Name="Rating" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBlock x:Name="HotelRoomInfo" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+        <TextBlock x:Name="HotelRoomAddress" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+        <TextBlock x:Name="HotelRoomDescription" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+        <TextBlock x:Name="HotelRoomPrice" Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+     </Grid>
 </UserControl>

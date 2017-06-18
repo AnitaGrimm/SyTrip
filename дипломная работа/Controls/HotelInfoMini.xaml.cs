@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using дипломная_работа.Helpers;
 using static дипломная_работа.Helpers.AmadeusAPI;
 
 namespace дипломная_работа.Controls
@@ -28,6 +29,7 @@ namespace дипломная_работа.Controls
             this.Room = Room;
             Name.Text = Room?.hotel?.property_name ?? "";
             Price.Text = price;
+            stars.Source = AmadeusAPI.GetRating(Room.hotel.rating);
         }
     }
 }

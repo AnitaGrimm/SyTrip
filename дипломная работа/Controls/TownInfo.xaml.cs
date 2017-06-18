@@ -17,19 +17,19 @@ using дипломная_работа.Model;
 namespace дипломная_работа.Controls
 {
     /// <summary>
-    /// Логика взаимодействия для ResultItem.xaml
+    /// Логика взаимодействия для TownInfo.xaml
     /// </summary>
-    public partial class ResultItemControl : UserControl
+    public partial class TownInfo : UserControl
     {
-        public ResultItemControl(ResultItem result, int townnum)
+        public TownInfo(ResultItem result, int townnum)
         {
             InitializeComponent();
-            TownNum.Text = townnum.ToString();
-            TownInfo.Text = string.Format("{0}({1:f2})", result.Town.Name_rus==""? result.Town.Name: result.Town.Name_rus, result.DepatureDate.Subtract(result.ArrivalDate).TotalDays);
+            Num.Text = townnum.ToString();
+            Name.Text = string.Format("{0}({1:f2})", result.Town.Name_rus==""? result.Town.Name: result.Town.Name_rus, result.DepatureDate.Subtract(result.ArrivalDate).TotalDays);
             var ar = result.ArrivalDate;
             var dep = result.DepatureDate;
-            DateInfoArr.Text = string.Format("{0}-{1}-{2} {3}:{4}", ar.Day, ar.Month, ar.Year, ar.Hour, ar.Minute);
-            DateInfoDep.Text = string.Format("{0}-{1}-{2} {3}:{4}", dep.Day, dep.Month, dep.Year, dep.Hour, dep.Minute);
+            DateArr.Text = string.Format("{0}-{1}-{2} {3}:{4}", ar.Day, ar.Month, ar.Year, ar.Hour, ar.Minute);
+            DateDep.Text = string.Format("{0}-{1}-{2} {3}:{4}", dep.Day, dep.Month, dep.Year, dep.Hour, dep.Minute);
         }
     }
 }

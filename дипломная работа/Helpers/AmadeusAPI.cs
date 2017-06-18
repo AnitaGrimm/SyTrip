@@ -15,6 +15,10 @@ namespace дипломная_работа.Helpers
 {
     public partial class AmadeusAPI
     {
+        public static BitmapImage GetRating(double rating)
+        {
+            return new BitmapImage(new Uri(@"..\Resources\Stars\" + ((int)Math.Floor(rating)) + ".gif", UriKind.Relative));
+        }
         public class Result
         {
             public string property_code { get; set; }
@@ -28,6 +32,7 @@ namespace дипломная_работа.Helpers
             public List<Room> rooms { get; set; }
             public List<Amenity> amenities { get; set; }
             public List<Contact> contacts { get; set; }
+            public double rating { get; set; }
             
         }
         public class Award
@@ -440,10 +445,12 @@ namespace дипломная_работа.Helpers
                 List<Result> results = new List<Result>();
                 Regex rx = new Regex("{([" + @"\s" + "\r\n]*)\"property_code\"" + @"\s" + "*:" + @"\s" + "*\"(?<property_code>[^\"]*)\",([" + @"\s" + "\r\n]*)\"property_name\"" + @"\s" + "*:" + @"\s" + "*\"(?<property_name>[^\"]*)\",([" + @"\s" + "\r\n]*)\"location\"" + @"\s" + "*:" + @"\s" + "*{(?<location>[^}]*)},([" + @"\s" + "\r\n]*)\"address\"" + @"\s" + "*:" + @"\s" + "*{(?<address>[^}]*)},([" + @"\s" + "\r\n]*)\"total_price\"" + @"\s" + "*:" + @"\s" + "*{(?<total_price>[^}]*)},([" + @"\s" + "\r\n]*)\"min_daily_rate\"" + @"\s" + "*:" + @"\s" + "*{(?<min_daily_rate>[^}]*)},([" + @"\s" + "\r\n]*)\"contacts\"" + @"\s" + "*:" + @"\s" + @"*\[(?<contacts>[^\]]*)\],([" + @"\s" + "\r\n]*)\"amenities\"" + @"\s" + "*:" + @"\s" + @"*\[(?<amenities>[^\]]*)\],([" + @"\s" + "\r\n]*)\"awards\"" + @"\s" + "*:" + @"\s" + @"*\[(?<awards>[^\]]*)\],([" + @"\s" + "\r\n]*)\"images\"" + @"\s" + "*:" + @"\s" + @"*\[(?<images>[^\]]*)\],([" + @"\s" + "\r\n]*)\"rooms\"" + @"\s" + "*:" + @"\s" + @"*\[(?<rooms>[^\]]*)],([" + @"\s" + "\r\n]*)\"_links\"" + @"\s" + "*:" + @"\s" + "{(?<links>[^}]*)}([" + @"\s" + "\r\n]*)}([" + @"\s" + "\r\n]*)}");
                 var matches = rx.Matches(response);
+                double varfortryparse;
                 foreach (Match match in matches)
                     try
                     {
                         var res = new Result() { property_code = match.Groups["property_code"].Value, property_name = match.Groups["property_name"].Value, location = Location.Parse(match.Groups["location"].Value), address = Address.Parse(match.Groups["address"].Value), total_price = Price.Parse(match.Groups["total_price"].Value), min_daily_rate = Price.Parse(match.Groups["min_daily_rate"].Value), contacts = Contact.ParseContacts(match.Groups["contacts"].Value), amenities = Amenity.ParseAmenities(match.Groups["amenities"].Value), awards = Award.ParseAwards(match.Groups["awards"].Value), images = HotelImage.ParseHotelImages(match.Groups["images"].Value), rooms = Room.ParseRooms(match.Groups["rooms"].Value, allrates) };
+                        res.rating = (res.awards.Count == 0 ? 0 : (res.awards.Sum(x=> { return double.TryParse(x.rating, out varfortryparse) ? varfortryparse : 0; })));
                         foreach (var room in res.rooms)
                             room.hotel = res;
                         results.Add(res);

@@ -105,8 +105,8 @@
     <Compile Include="Controls\HotelInfoMini.xaml.cs">
       <DependentUpon>HotelInfoMini.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ResultItemControl.xaml.cs">
-      <DependentUpon>ResultItemControl.xaml</DependentUpon>
+    <Compile Include="Controls\TownInfo.xaml.cs">
+      <DependentUpon>TownInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ResultItemInfo.xaml.cs">
       <DependentUpon>ResultItemInfo.xaml</DependentUpon>
@@ -163,7 +163,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\ResultItemControl.xaml">
+    <Page Include="Controls\TownInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -319,6 +319,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\image_not_found.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\left.png" />
+    <Resource Include="Resources\right.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Stars\0.gif" />
+    <Resource Include="Resources\Stars\1.gif" />
+    <Resource Include="Resources\Stars\2.gif" />
+    <Resource Include="Resources\Stars\3.gif" />
+    <Resource Include="Resources\Stars\4.gif" />
+    <Resource Include="Resources\Stars\5.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

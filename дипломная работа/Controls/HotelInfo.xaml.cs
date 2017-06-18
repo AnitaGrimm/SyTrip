@@ -35,14 +35,7 @@ namespace дипломная_работа.Controls
                 HotelRoomInfo.Text = "Тип комнаты: " + Room.room_type_info.room_type + ", " + Room.room_type_info.bed_type + ", " + Room.room_type_info.number_of_beds + " beds";
                 CurrencyConverter cc = CommonData.CurrencyConverter;
                 HotelRoomPrice.Text = "Стоимость: " + String.Format("{0:f2} rub", cc.getRub(Room.total_amount).amount);
-                try
-                {
-                    HotelRoomStars.Text = "Рейтинг: " + String.Format("{0:f2}", Room.hotel.awards.Where(x => { double d; return double.TryParse(x.rating, out d); }).Average(x => double.Parse(x.rating)));
-                }
-                catch
-                {
-                    HotelRoomStars.Text = "";
-                }
+                Rating.Source = AmadeusAPI.GetRating(Room.hotel.rating);
             }
             catch
             {
