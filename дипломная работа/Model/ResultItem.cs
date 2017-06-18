@@ -23,7 +23,7 @@ namespace дипломная_работа.Model
         public Airport Airport = null;
         public int DaysCount = 0;
         public double DayCost = 0;
-        public List<List<AmadeusAPI.Room>> rooms = new List<List<AmadeusAPI.Room>>();
+        public List<AmadeusAPI.Room> rooms = new List<AmadeusAPI.Room>();
 
         public void SetRooms(List<DateRangeForHotel> dates)
         {

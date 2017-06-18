@@ -105,6 +105,9 @@
     <Compile Include="Controls\HotelInfoMini.xaml.cs">
       <DependentUpon>HotelInfoMini.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\HotelsInTown.xaml.cs">
+      <DependentUpon>HotelsInTown.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TownInfo.xaml.cs">
       <DependentUpon>TownInfo.xaml</DependentUpon>
     </Compile>
@@ -160,6 +163,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\HotelInfoMini.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\HotelsInTown.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

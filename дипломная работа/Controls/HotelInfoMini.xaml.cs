@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using дипломная_работа.Helpers;
+using дипломная_работа.Resources;
 using static дипломная_работа.Helpers.AmadeusAPI;
 
 namespace дипломная_работа.Controls
@@ -23,12 +24,12 @@ namespace дипломная_работа.Controls
     public partial class HotelInfoMini : UserControl
     {
         Room Room;
-        public HotelInfoMini(Room Room, string price)
+        public HotelInfoMini(Room Room)
         {
             InitializeComponent();
             this.Room = Room;
             Name.Text = Room?.hotel?.property_name ?? "";
-            Price.Text = price;
+            Price.Text = String.Format("{0:f2} руб",CommonData.CurrencyConverter.getRub(Room.total_amount).amount);
             stars.Source = AmadeusAPI.GetRating(Room.hotel.rating);
         }
     }
