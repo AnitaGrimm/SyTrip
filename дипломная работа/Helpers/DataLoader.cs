@@ -34,30 +34,7 @@ namespace дипломная_работа.Helpers
             CommonData.Airports = Airports;
             return CompareData(Countries, Towns, Airports, ref pb);
         }
-        public static List<Country> LoadCurrency(WebClient wb, ref ProgressBar pb)
-        {
-            if (!WebTools.ConnectionAvailable("http://www.google.com"))
-                return null;
-            List<Country> Countries = new List<Country>();
-            string s = Encoding.UTF8.GetString(wb.DownloadData("http://api.travelpayouts.com/data/countries.json"));
-            var rx = new Regex("{\"code\":\"(?<code>[^\"]*)\",\"name\":\"(?<name>[^\"]*)\",\"currency\":((\"(?<currency>[^\"]*)\")|(?<currency>null)),\"name_translations\":{(?<translations>[^}]*)}}");
-            var rus = new Regex("\"ru\":\"(?<ru>[^\"]*)\"");
-            var matches = rx.Matches(s);
-            double pathofstatus = 100 / 5.0 / matches.Count;
-            foreach (Match match in matches)
-            {
-                Country Country = new Country();
-                Country.Code = match.Groups["code"].Value;
-                Country.Name = match.Groups["name"].Value;
-                var rusmatch = rus.Match(match.Groups["translations"].Value);
-                if (rusmatch.Success)
-                    Country.Name_rus = rusmatch.Groups["ru"].Value;
-                Countries.Add(Country);
-                var prbar = pb;
-                pb.Dispatcher.Invoke(new Action(() => { prbar.Value += pathofstatus; }));
-            }
-            return Countries;
-        }
+
         static List<Country> LoadCountries(WebClient wb,  ref ProgressBar pb)
         {
             if (!WebTools.ConnectionAvailable("http://www.google.com"))

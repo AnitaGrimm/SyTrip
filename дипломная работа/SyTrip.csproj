@@ -102,6 +102,12 @@
     <Compile Include="Controls\HotelInfo.xaml.cs">
       <DependentUpon>HotelInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\HotelInfoMini.xaml.cs">
+      <DependentUpon>HotelInfoMini.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ResultItemControl.xaml.cs">
+      <DependentUpon>ResultItemControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ResultItemInfo.xaml.cs">
       <DependentUpon>ResultItemInfo.xaml</DependentUpon>
     </Compile>
@@ -150,6 +156,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\HotelInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\HotelInfoMini.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ResultItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -269,7 +283,7 @@
     <Resource Include="Resources\logo.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\zheleznaya_doroga_1680x1050_5474.jpg" />
+    <Resource Include="Resources\main_background.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icon1.ico" />
@@ -302,6 +316,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\image_not_found.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

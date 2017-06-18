@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 using дипломная_работа.Model;
 
 namespace дипломная_работа.Helpers
@@ -66,6 +67,14 @@ namespace дипломная_работа.Helpers
             public int width { get; set; }
             public int height { get; set; }
             public string url { get; set; }
+            public BitmapImage GetImage()
+            {
+                try
+                {
+                    return new BitmapImage(new Uri(url));
+                }
+                catch { return new BitmapImage(new Uri(@"..\Resources\image_not_found.jpg", UriKind.Relative)); }
+            }
             public static HotelImage Parse(string s)
             {
                 Regex rx = new Regex("([\n\r"+@"\s"+"]*)\"category\""+@"\s"+"*:"+@"\s"+"*\"(?<category>[^\"]*)\",([\n"+@"\s"+"\r]*)\"width\""+@"\s"+"*:"+@"\s"+"*(?<width>[0-9]+),([\n\r"+@"\s"+"]*)\"height\""+@"\s"+"*:"+@"\s"+"*(?<height>[0-9]+),([\n\r"+@"\s"+"]*)\"url\""+@"\s"+"*:"+@"\s"+"*\"(?<url>[^\"]*)\"([\r\n"+@"\s"+"]*)");
@@ -82,6 +91,8 @@ namespace дипломная_работа.Helpers
             public static List<HotelImage> ParseHotelImages(string s)
             {
                 List<HotelImage> results = new List<HotelImage>();
+                if (String.IsNullOrWhiteSpace(s))
+                    return results;
                 Regex rx = new Regex(@"{(?<image>[^}]*)}([,\s\r\n]*)");
                 var matches = rx.Matches(s);
                 foreach (Match match in matches)
@@ -378,12 +389,6 @@ namespace дипломная_работа.Helpers
             public string GetQuerryURL()
             {
                 string url = InitialURL+apikey;
-                //if (location != "" && location != null)
-                //{
-                //    url += "&location=" + location;
-                //    if (radius > 0)
-                //        url += "&radius=" + radius;
-                //}
                 if (south_west_corner != null && north_east_corner != null)
                     url += "&south_west_corner=" + south_west_corner + "&north_east_corner=" + north_east_corner;
                 if (check_in != DateTime.MinValue)

@@ -102,7 +102,7 @@ namespace дипломная_работа.Helpers
             var dates = getDates(result, Querry);
             Result[] resarray = result.ToArray();
             Array.Sort(resarray.Select(x => x.GetCost()).ToArray(), resarray);
-            resarray = resarray.Take(200).ToArray();
+            resarray = result.Take(200).ToArray();
             pb.Dispatcher.BeginInvoke(new Action(() => { pb.Value += val; }));
             Parallel.ForEach(resarray, (res) => res.SetHotelsForItems(dates));
             pb.Dispatcher.BeginInvoke(new Action(() => { pb.Value += val; }));

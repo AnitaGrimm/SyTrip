@@ -82,7 +82,7 @@ namespace дипломная_работа.Model
         public double GetMinHotelCost()
         {
             double minCost = 0;
-            CurrencyConverter cc = new CurrencyConverter();
+            CurrencyConverter cc = CommonData.CurrencyConverter;
             foreach (var item in Route)
             {
                 try
@@ -99,7 +99,7 @@ namespace дипломная_работа.Model
         public double GetMaxHotelCost()
         {
             double maxCost = 0;
-            CurrencyConverter cc = new CurrencyConverter();
+            CurrencyConverter cc = CommonData.CurrencyConverter;
             foreach (var item in Route)
             {
                 try

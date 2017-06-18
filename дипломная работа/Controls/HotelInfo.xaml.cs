@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using дипломная_работа.Helpers;
+using дипломная_работа.Resources;
 
 namespace дипломная_работа.Controls
 {
@@ -32,7 +33,7 @@ namespace дипломная_работа.Controls
                 HotelRoomAddress.Text = "Адрес: "+Room.hotel.address.line1;
                 HotelRoomDescription.Text = "Описание: " + Room.description.Replace('\"','\0').Replace('{','\0').Replace('}', '\0');
                 HotelRoomInfo.Text = "Тип комнаты: " + Room.room_type_info.room_type + ", " + Room.room_type_info.bed_type + ", " + Room.room_type_info.number_of_beds + " beds";
-                CurrencyConverter cc = new CurrencyConverter();
+                CurrencyConverter cc = CommonData.CurrencyConverter;
                 HotelRoomPrice.Text = "Стоимость: " + String.Format("{0:f2} rub", cc.getRub(Room.total_amount).amount);
                 try
                 {
@@ -42,40 +43,11 @@ namespace дипломная_работа.Controls
                 {
                     HotelRoomStars.Text = "";
                 }
-                if (Room.hotel.images.FirstOrDefault() == null)
-                    return;
-                Task.Factory.StartNew(() =>
-                    {
-                        try
-                        {
-                            HotelImage.Source = DownloadInst(Room.hotel.images.First().url);
-                        }
-                        catch { }
-                    });
-                //new BitmapImage(new Uri(Room.hotel.images.First().url,UriKind.Absolute));
             }
             catch
             {
 
             }
-        }
-        public BitmapImage DownloadInst(string Url)
-        {
-            System.Net.WebRequest request = System.Net.WebRequest.Create(Url);
-            System.Net.WebResponse response = request.GetResponse();
-            System.IO.Stream responseStream =
-                response.GetResponseStream();
-
-            BitmapImage image = null;
-            Application.Current.Dispatcher.Invoke(new Action(() =>
-            {
-                image = new BitmapImage();
-                image.BeginInit();
-                image.CreateOptions = BitmapCreateOptions.IgnoreColorProfile;
-                image.StreamSource = responseStream;
-                image.EndInit();
-            }));
-            return image;
         }
     }
 }

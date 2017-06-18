@@ -10,7 +10,7 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="Resources/zheleznaya_doroga_1680x1050_5474.jpg"/>
+            <ImageBrush ImageSource="Resources/main_background.jpg"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>

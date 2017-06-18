@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using дипломная_работа.Helpers;
 using дипломная_работа.Model;
+using дипломная_работа.Resources;
 
 namespace дипломная_работа.Controls
 {
@@ -42,7 +43,7 @@ namespace дипломная_работа.Controls
                         Background = new SolidColorBrush(Colors.LightGreen);
                         try
                         {
-                            CurrencyConverter cc = new CurrencyConverter();
+                            CurrencyConverter cc = CommonData.CurrencyConverter;
                             HotelCost = SelectedRooms.Sum(room => cc.getRub(room.total_amount).amount);
                             HotelsCost.Text = string.Format("{0:f2} руб", HotelCost);
                         }
@@ -105,7 +106,7 @@ namespace дипломная_работа.Controls
                 }
                 if (!IsNativeTown)
                 {
-                    CurrencyConverter cc = new CurrencyConverter();
+                    CurrencyConverter cc = CommonData.CurrencyConverter;
                     if (SelectedRoomsnum == -1)
                         HotelsCost.Text = string.Format("{0:f2} - {1:f2} руб", resitem.rooms.Select(roomset => roomset.Sum(room => cc.getRub(room.total_amount).amount)).Min(), resitem.rooms.Select(roomset => roomset.Sum(room => cc.getRub(room.total_amount).amount)).Max());
                     else
