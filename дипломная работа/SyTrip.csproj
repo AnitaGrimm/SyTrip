@@ -332,5 +332,9 @@
     <Resource Include="Resources\Stars\4.gif" />
     <Resource Include="Resources\Stars\5.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\down.gif" />
+    <Resource Include="Resources\up.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

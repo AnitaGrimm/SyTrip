@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Google.Apis.QPXExpress.v1.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using дипломная_работа.Helpers;
 using дипломная_работа.Model;
 using дипломная_работа.Resources;
 
@@ -26,12 +29,23 @@ namespace дипломная_работа.Controls
         {
             InitializeComponent();
         }
-        public void SetData(ResultItemInfo info)
+        public void SetData(SliceInfo slice, PricingInfo pricing)
         {
-            DepDate.Text = "Дата отправления: " + info.DeaprtureDate.Text; 
-            ArDate.Text = "Дата прибытия: " + info.ArrivalDate.Text;
-            DepPlace.Text = "Место отправления: "+ info.DeaprturePlace.Text; 
-            ArPlace.Text = "Место прибытия: " + info.ArrivalPlace.Text;
+            var or = CommonData.Towns.Where(x => x.Code == slice.Segment[0].Leg[0].Origin).FirstOrDefault();
+            Origin.Text = or==null?slice.Segment[0].Leg[0].Origin:(or.Name_rus==""? or.Name: or.Name_rus);
+            var dest = CommonData.Towns.Where(x => x.Code == slice.Segment[0].Leg[0].Destination).FirstOrDefault();
+            Destination.Text = dest == null ? slice.Segment[0].Leg[0].Destination : (dest.Name_rus == "" ? dest.Name : dest.Name_rus);
+            Price.Text = string.Format("{0:f2}руб", ParseRub(pricing.SaleTotal));
+            var depdate = Computer.ParseDateTime(slice.Segment[0].Leg[0].DepartureTime);
+            var ardate = Computer.ParseDateTime(slice.Segment[0].Leg[0].ArrivalTime);
+            DepDate.Text = string.Format("{0}-{1}-{2} {3}:{4}", depdate.Day, depdate.Month, depdate.Year, depdate.Hour, depdate.Minute);
+            ArDate.Text = string.Format("{0}-{1}-{2} {3}:{4}", ardate.Day, ardate.Month, ardate.Year, ardate.Hour, ardate.Minute);
+        }
+        private double ParseRub(string saleTotal)
+        {
+            var rx = new Regex("[^0-9]*(?<val>[0-9]*(.[0-9])?)");
+            var match = rx.Match(saleTotal);
+            return double.Parse(match.Groups["val"].Value);
         }
     }
 }
