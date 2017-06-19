@@ -31,9 +31,9 @@ namespace дипломная_работа.Controls
         }
         public void SetData(SliceInfo slice)
         {
-            var or = CommonData.Towns.Where(x => x.Code == slice.Segment[0].Leg[0].Origin).FirstOrDefault();
+            var or = CommonData.Airports.Where(x => x.Code == slice.Segment[0].Leg[0].Origin).FirstOrDefault();
             Origin.Text = or==null?slice.Segment[0].Leg[0].Origin:(or.Name_rus==""? or.Name: or.Name_rus);
-            var dest = CommonData.Towns.Where(x => x.Code == slice.Segment[0].Leg[0].Destination).FirstOrDefault();
+            var dest = CommonData.Airports.Where(x => x.Code == slice.Segment[0].Leg[0].Destination).FirstOrDefault();
             Destination.Text = dest == null ? slice.Segment[0].Leg[0].Destination : (dest.Name_rus == "" ? dest.Name : dest.Name_rus);
             var depdate = Computer.ParseDateTime(slice.Segment[0].Leg[0].DepartureTime);
             var ardate = Computer.ParseDateTime(slice.Segment[0].Leg[0].ArrivalTime);

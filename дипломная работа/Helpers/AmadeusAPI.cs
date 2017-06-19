@@ -18,7 +18,7 @@ namespace дипломная_работа.Helpers
     {
         public static BitmapImage GetRating(double rating)
         {
-            return new BitmapImage(new Uri(@"..\Resources\Stars\" + ((int)Math.Floor(rating)) + ".gif", UriKind.Relative));
+            return new BitmapImage(new Uri(@"..\Resources\Stars\" + ((int)Math.Round(rating)) + ".gif", UriKind.Relative));
         }
         public class Result
         {

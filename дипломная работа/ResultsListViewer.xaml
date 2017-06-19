@@ -48,13 +48,13 @@
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="общая стоимость "/>
-                        <Button Width="15" Height="20">
+                        <Button Width="15" Height="20" Click="Button_Click_1">
                             <Button.Background>
                                 <ImageBrush ImageSource="Resources/up.gif"/>
                             </Button.Background>
                         </Button>
                         <TextBlock Text=" "/>
-                        <Button Width="15" Height="20">
+                        <Button Width="15" Height="20" Click="Button_Click_2">
                             <Button.Background>
                                 <ImageBrush ImageSource="Resources/down.gif"/>
                             </Button.Background>
@@ -62,13 +62,13 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="стоимость пути "/>
-                        <Button Width="15" Height="20">
+                        <Button Width="15" Height="20" Click="Button_Click_3">
                             <Button.Background>
                                 <ImageBrush ImageSource="Resources/up.gif"/>
                             </Button.Background>
                         </Button>
                         <TextBlock Text=" "/>
-                        <Button Width="15" Height="20">
+                        <Button Width="15" Height="20" Click="Button_Click_4">
                             <Button.Background>
                                 <ImageBrush ImageSource="Resources/down.gif"/>
                             </Button.Background>
@@ -76,13 +76,13 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="стоимость проживания "/>
-                        <Button Width="15" Height="20">
+                        <Button Width="15" Height="20" Click="Button_Click_5">
                             <Button.Background>
                                 <ImageBrush ImageSource="Resources/up.gif"/>
                             </Button.Background>
                         </Button>
                         <TextBlock Text=" "/>
-                        <Button Width="15" Height="20">
+                        <Button Width="15" Height="20" Click="Button_Click_6">
                             <Button.Background>
                                 <ImageBrush ImageSource="Resources/down.gif"/>
                             </Button.Background>
@@ -92,13 +92,13 @@
                 <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="количество звезд отеля " HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <Button Width="15" Height="20">
+                        <Button Width="15" Height="20" Click="Button_Click_7">
                             <Button.Background>
                                 <ImageBrush ImageSource="Resources/up.gif"/>
                             </Button.Background>
                         </Button>
                         <TextBlock Text=" "/>
-                    <Button Width="15" Height="20">
+                    <Button Width="15" Height="20" Click="Button_Click_8">
                             <Button.Background>
                                 <ImageBrush ImageSource="Resources/down.gif"/>
                             </Button.Background>

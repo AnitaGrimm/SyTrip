@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace дипломная_работа
         Frame MainFrame;
         List<Result> Results;
         InputPage InputPage;
+        ObservableCollection<ResultControl> rc;
         Querry Querry;
         public ResultsListViewer(Frame MainFrame, List<Result> Results, InputPage InputPage, Querry Querry)
         {
@@ -59,10 +61,10 @@ namespace дипломная_работа
             }
             if (Results != null)
             {
-                List<ResultControl> r1 = new List<ResultControl>();
+                rc = new ObservableCollection<ResultControl>();
                 foreach (var result in Results)
-                    r1.Add(new ResultControl(result));
-                LBox.ItemsSource = r1;
+                    rc.Add(new ResultControl(result));
+                LBox.ItemsSource = rc;
             }
                 tb.Text = "Бюджет: " + Querry.Budget + "   Максимальное кол-во дней: " + Querry.MaxDayCount + "     "+
                 "Дата начала: " + Querry.DateOfBigiinning1.ToShortDateString() + " - " + Querry.DateOfBigiinning1.ToShortDateString() + "   Город начала: " + (Querry.NativeTown.Name_rus != "" ? Querry.NativeTown.Name_rus : Querry.NativeTown.Name) + Environment.NewLine +
@@ -92,6 +94,86 @@ namespace дипломная_работа
                 new ResultViewer(MainFrame, this, res, Querry),
                 null
                 );
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var arr = rc.ToArray();
+            Array.Sort(arr.Select(x=>x.Result.GetCost()).ToArray(), arr);
+            LBox.ItemsSource = arr.Reverse();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            var arr = rc.ToArray();
+            Array.Sort(arr.Select(x => x.Result.GetCost()).ToArray(), arr);
+            LBox.ItemsSource = arr;
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            var arr = rc.ToArray();
+            Array.Sort(arr.Select(x => x.Result.FlightCostTotal).ToArray(), arr);
+            LBox.ItemsSource = arr.Reverse();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            var arr = rc.ToArray();
+            Array.Sort(arr.Select(x => x.Result.FlightCostTotal).ToArray(), arr);
+            LBox.ItemsSource = arr;
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            var arr = rc.ToArray();
+            Array.Sort(arr.Select(x => x.Result.HotelCost).ToArray(), arr);
+            LBox.ItemsSource = arr.Reverse();
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            var arr = rc.ToArray();
+            Array.Sort(arr.Select(x => x.Result.HotelCost).ToArray(), arr);
+            LBox.ItemsSource = arr;
+        }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            var arr = rc.ToArray();
+            var vals = new List<double>();
+            foreach (var res in arr)
+            {
+                try
+                {
+                    vals.Add(res.Result.Route.Average(ri => ri.rooms.Average(r => r.hotel.rating)));
+                }
+                catch
+                {
+                    vals.Add(0);
+                }
+            }
+            Array.Sort(vals.ToArray(), arr);
+            LBox.ItemsSource = arr.Reverse();
+        }
+
+        private void Button_Click_8(object sender, RoutedEventArgs e)
+        {
+            var arr = rc.ToArray();
+            var vals = new List<double>();
+            foreach(var res in arr)
+            {
+                try
+                {
+                    vals.Add(res.Result.Route.Average(ri => ri.rooms.Average(r => r.hotel.rating)));
+                }
+                catch
+                {
+                    vals.Add(0);
+                }
+            }
+            Array.Sort(vals.ToArray(), arr);
+            LBox.ItemsSource = arr;
         }
     }
 }
