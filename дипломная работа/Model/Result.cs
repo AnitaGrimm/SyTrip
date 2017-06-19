@@ -34,6 +34,10 @@ namespace дипломная_работа.Model
                 ResultItem res = new ResultItem();
                 res.Town = order[i].Town;
                 FlightCostTotal = ParseRub(currenttrip.SaleTotal);
+                if(FlightCostTotal==0)
+                {
+                    FlightCostTotal = -1;
+                }
                 if (town != -1)
                 {
                     res.tripOpt = currenttrip;
@@ -61,6 +65,7 @@ namespace дипломная_работа.Model
             querry = res.querry;
             order = res.order;
             HotelCost = res.HotelCost;
+            FlightCostTotal = res.FlightCostTotal;
             IsMinCost = res.IsMinCost; IsMinDays = res.IsMinDays; IsMinDaysCost = res.IsMinDaysCost;
             Route = res.Route.Select(x => new ResultItem() { Airport = x.Airport, ArrivalDate = x.ArrivalDate, ArrivalInfo = x.ArrivalInfo, ArrivalPlace = x.ArrivalPlace, DayCost = x.DayCost, DaysCount = x.DaysCount, DepartureInfo = x.DepartureInfo, DeparturePlace = x.DeparturePlace, DepatureDate = x.DepatureDate, rooms = x.rooms, Town = x.Town, tripOpt = x.tripOpt }).ToList();
         }

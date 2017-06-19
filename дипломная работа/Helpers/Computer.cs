@@ -105,11 +105,10 @@ namespace дипломная_работа.Helpers
             resarray = result.Take(10).ToArray();
             pb.Dispatcher.BeginInvoke(new Action(() => { pb.Value += val; }));
             List<Result> ResWithhotels = new List<Result>();
-
             foreach(var res in resarray)
                 ResWithhotels.AddRange(GetResWithHotels(res,dates));
             pb.Dispatcher.BeginInvoke(new Action(() => { pb.Value += val; }));
-            return ResWithhotels;
+            return ResWithhotels.Where(x => x.HotelCost + x.FlightCostTotal <= Querry.Budget).ToList();
         }
         public List<Result> GetResWithHotels(Result res, List<DateRangeForHotel> dates)
         {

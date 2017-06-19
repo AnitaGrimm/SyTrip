@@ -87,7 +87,7 @@ namespace дипломная_работа
         {
             if (e.AddedItems == null || e.AddedItems.Count == 0)
                 return;
-            Result res = ((ResultControl)e.AddedItems[0]).Result;
+            Result res = ((ResultControl)((ListBox)sender).SelectedItem).Result;
             MainFrame.Navigate(
                 new ResultViewer(MainFrame, this, res, Querry),
                 null
