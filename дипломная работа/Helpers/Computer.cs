@@ -108,7 +108,9 @@ namespace дипломная_работа.Helpers
             foreach(var res in resarray)
                 ResWithhotels.AddRange(GetResWithHotels(res,dates));
             pb.Dispatcher.BeginInvoke(new Action(() => { pb.Value += val; }));
-            return ResWithhotels.Where(x => x.HotelCost + x.FlightCostTotal <= Querry.Budget).ToList();
+            return ResWithhotels.Where(
+                x => x.HotelCost + x.FlightCostTotal <= Querry.Budget
+                ).ToList();
         }
         public List<Result> GetResWithHotels(Result res, List<DateRangeForHotel> dates)
         {
@@ -402,7 +404,7 @@ namespace дипломная_работа.Helpers
         {
             AmadeusAPI.Quadrat quadr = new AmadeusAPI.Quadrat(50, new AmadeusAPI.Location { longitude = Town.Coordinates.longitude, latitude = Town.Coordinates.latitude });
             AmadeusAPI.Querry q = new AmadeusAPI.Querry() { apikey = CommonData.AmadeusAPIapikey, all_rooms = false, location = Town.Code, check_in = From, check_out = To, north_east_corner = quadr.north_east_corner, south_west_corner = quadr.south_west_corner };
-            var AllResults = AmadeusAPI.Response.GetResponse(q).results;
+            var AllResults = AmadeusAPI.Response.GetResponse(q,Town).results;
             var results = new List<List<AmadeusAPI.Room>>();
             List<AmadeusAPI.Room> way = new List<AmadeusAPI.Room>();
             if (IsOneHotel)

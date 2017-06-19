@@ -47,14 +47,34 @@ namespace дипломная_работа
             foreach (var room in info.Rooms)
                 hotelinfos.Add(new HotelInfo(room));
             HotelInfoViewer.ItemsSource = hotelinfos;
+            var hot = info.Rooms.FirstOrDefault().hotel;
+            wb.Source = new Uri(@"http://maps.google.com/?q=" + hot.address.city + "+" + hot.address.line1 + hot.property_name,UriKind.Absolute);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            ParentPage.lb.SelectedIndex = -1;
             MainFrame.Navigate(
                 ParentPage,
                 null
                 );
+        }
+
+        private void HotelInfoViewer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var hi = (HotelInfo)(((ListBox)sender).SelectedItem);
+            if (hi != null)
+            {
+                try
+                {
+                    var hot = hi.Room.hotel;
+                    wb.Source = new Uri(@"http://maps.google.com/?q=" + hot.address.city + "+" + hot.address.line1 + hot.property_name, UriKind.Absolute);
+                }
+                catch
+                {
+
+                }
+            }
         }
     }
 }

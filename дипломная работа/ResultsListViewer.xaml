@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:дипломная_работа"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="500" d:DesignWidth="600"
       Title="ResultsListViewer">
 
     <Grid Background="LightGray" >
@@ -13,7 +13,7 @@
             <RowDefinition Height="5"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="120"/>
             <RowDefinition Height="5"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="40"/>
@@ -21,6 +21,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="35"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="40"/>
@@ -30,16 +32,87 @@
                 <ImageBrush ImageSource="Resources/Back_button_image.png" Stretch="UniformToFill"/>
             </Button.Background>
         </Button>
-        <Grid  Background="#7FFFFFFF" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2">
-            <TextBlock x:Name="tb" FontFamily="Calibri" FontSize="14" TextWrapping="Wrap" TextAlignment="Justify"></TextBlock>
+        <Grid  Background="#7FFFFFFF" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="27*"/>
+                <ColumnDefinition Width="103*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="tb" FontFamily="Calibri" FontSize="14" TextWrapping="Wrap" TextAlignment="Justify" Grid.ColumnSpan="2"></TextBlock>
+            <TextBlock FontFamily="Calibri" FontSize="14" TextWrapping="Wrap" TextAlignment="Justify" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">Сортировка</TextBlock>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="общая стоимость "/>
+                        <Button Width="15" Height="20">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Resources/up.gif"/>
+                            </Button.Background>
+                        </Button>
+                        <TextBlock Text=" "/>
+                        <Button Width="15" Height="20">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Resources/down.gif"/>
+                            </Button.Background>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="стоимость пути "/>
+                        <Button Width="15" Height="20">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Resources/up.gif"/>
+                            </Button.Background>
+                        </Button>
+                        <TextBlock Text=" "/>
+                        <Button Width="15" Height="20">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Resources/down.gif"/>
+                            </Button.Background>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="стоимость проживания "/>
+                        <Button Width="15" Height="20">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Resources/up.gif"/>
+                            </Button.Background>
+                        </Button>
+                        <TextBlock Text=" "/>
+                        <Button Width="15" Height="20">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Resources/down.gif"/>
+                            </Button.Background>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="количество звезд отеля " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Button Width="15" Height="20">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Resources/up.gif"/>
+                            </Button.Background>
+                        </Button>
+                        <TextBlock Text=" "/>
+                    <Button Width="15" Height="20">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Resources/down.gif"/>
+                            </Button.Background>
+                        </Button>
+                    </StackPanel>
+            </StackPanel>
         </Grid>
-        <ListBox x:Name="LBox" SelectionChanged="LBox_SelectionChanged" Background="#7FFFFFFF" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2">
+        <ListBox x:Name="LBox" SelectionChanged="LBox_SelectionChanged" Background="#7FFFFFFF" Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="2">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Width="{Binding Width, ElementName=LBox}" Orientation="Vertical"/>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-        <Image Grid.Column="3" Grid.Row="0"  Grid.ColumnSpan="2" Grid.RowSpan="3"  Source="Resources/logo.gif"/>
+        <Image Grid.Column="5" Grid.Row="0"  Grid.ColumnSpan="2" Grid.RowSpan="3"  Source="Resources/logo.gif"/>
     </Grid>
 </Page>

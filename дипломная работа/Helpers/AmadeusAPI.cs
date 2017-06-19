@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using дипломная_работа.Model;
+using дипломная_работа.Resources;
 
 namespace дипломная_работа.Helpers
 {
@@ -129,6 +130,10 @@ namespace дипломная_работа.Helpers
             public override string ToString()
             {
                 return latitude.ToString() +","+ longitude.ToString();
+            }
+            public double getDistance(Location location2)
+            {
+                return 2*Math.Asin(Math.Sqrt(Math.Sin((location2.latitude-latitude)/2)* Math.Sin((location2.latitude - latitude) / 2)+Math.Cos(latitude)*Math.Cos(location2.latitude) * Math.Sin((longitude - location2.longitude) / 2) * Math.Sin((longitude - location2.longitude) / 2))) * 6371;
             }
         }
         public class Address
@@ -357,7 +362,6 @@ namespace дипломная_работа.Helpers
                 return results;
             }
         }
-
         public class Quadrat
         {
             public Location south_west_corner { get; private set; } = null;
@@ -425,14 +429,16 @@ namespace дипломная_работа.Helpers
         public class Response
         {
             public List<Result> results { get; set; }
-            public static Response GetResponse(Querry querry)
+            public static Response GetResponse(Querry querry,Town town)
             {
                 WebClient wc = new WebClient();
+                
                 string response = Encoding.UTF8.GetString(wc.DownloadData(querry.GetQuerryURL()));
-                return new Response { results = GetResult(response) };
+                return new Response { results = GetResult(response, town) };
             }
-            static List<Result> GetResult(string response)
+            static List<Result> GetResult(string response,Town town)
             {
+                var townLocation = new Location() { latitude = town.Coordinates.latitude, longitude = town.Coordinates.longitude };
                 List<Rate> allrates = Rate.ParseRates(ref response);
                 Regex ratesRX = new Regex("\"rates\"" + @"\s*:\s*\[[^\]]*\]");
                 var rates = ratesRX.Matches(response);

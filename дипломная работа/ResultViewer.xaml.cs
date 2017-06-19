@@ -71,6 +71,7 @@ namespace дипломная_работа
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            ParentPage.LBox.SelectedIndex = -1;
             MainFrame.Navigate(
                 ParentPage,
                 null

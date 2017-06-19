@@ -22,7 +22,7 @@ namespace дипломная_работа.Controls
     /// </summary>
     public partial class HotelInfo : UserControl
     {
-        AmadeusAPI.Room Room;
+        public AmadeusAPI.Room Room { get; private set; }
         public HotelInfo(AmadeusAPI.Room Room)
         {
             InitializeComponent();
