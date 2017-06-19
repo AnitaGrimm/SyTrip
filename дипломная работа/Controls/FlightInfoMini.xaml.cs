@@ -21,25 +21,25 @@ using дипломная_работа.Resources;
 namespace дипломная_работа.Controls
 {
     /// <summary>
-    /// Логика взаимодействия для FlightInfo.xaml
+    /// Логика взаимодействия для FlightInfoMini.xaml
     /// </summary>
-    public partial class FlightInfo : UserControl
+    public partial class FlightInfoMini : UserControl
     {
-        public FlightInfo()
+        public FlightInfoMini()
         {
             InitializeComponent();
         }
-        public void SetData(SliceInfo slice, PricingInfo pricing)
+        public void SetData(SliceInfo slice)
         {
             var or = CommonData.Towns.Where(x => x.Code == slice.Segment[0].Leg[0].Origin).FirstOrDefault();
             Origin.Text = or==null?slice.Segment[0].Leg[0].Origin:(or.Name_rus==""? or.Name: or.Name_rus);
             var dest = CommonData.Towns.Where(x => x.Code == slice.Segment[0].Leg[0].Destination).FirstOrDefault();
             Destination.Text = dest == null ? slice.Segment[0].Leg[0].Destination : (dest.Name_rus == "" ? dest.Name : dest.Name_rus);
-            Price.Text = string.Format("{0:f2}руб", ParseRub(pricing.SaleTotal));
             var depdate = Computer.ParseDateTime(slice.Segment[0].Leg[0].DepartureTime);
             var ardate = Computer.ParseDateTime(slice.Segment[0].Leg[0].ArrivalTime);
             DepDate.Text = string.Format("{0}-{1}-{2} {3}:{4}", depdate.Day, depdate.Month, depdate.Year, depdate.Hour, depdate.Minute);
             ArDate.Text = string.Format("{0}-{1}-{2} {3}:{4}", ardate.Day, ardate.Month, ardate.Year, ardate.Hour, ardate.Minute);
+            Carrier.Source = DataLoader.getLogoAirport(200, 200, slice.Segment[0].Flight.Carrier);
         }
         private double ParseRub(string saleTotal)
         {

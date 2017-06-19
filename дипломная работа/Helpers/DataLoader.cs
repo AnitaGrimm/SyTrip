@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using дипломная_работа.Model;
 using дипломная_работа.Resources;
 
@@ -126,6 +127,10 @@ namespace дипломная_работа.Helpers
                 }
             }
             return Countries;
+        }
+        public static BitmapImage getLogoAirport(int Width, int Height, string IATA)
+        {
+            return new BitmapImage(new Uri(String.Format(@"http://pics.avs.io/{0}/{1}/{2}.png",Width,Height, IATA), UriKind.Absolute));
         }
     }
 }

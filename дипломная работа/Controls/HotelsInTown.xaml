@@ -11,7 +11,7 @@
             <RowDefinition Height="25"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="TownName" TextWrapping="Wrap"></TextBlock>
+        <TextBlock x:Name="TownName" TextWrapping="Wrap" FontFamily="Calibri" FontSize="14"></TextBlock>
         <ListBox x:Name="HotelInfoMiniList" Grid.Row="1"  Background="Transparent"/>
     </Grid>
 </UserControl>

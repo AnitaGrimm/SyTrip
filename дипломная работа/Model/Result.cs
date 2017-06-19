@@ -16,7 +16,7 @@ namespace дипломная_работа.Model
         public List<ResultItem> Route;
         public DateTime BeginDate;
         public DateTime EndDate;
-        private TripOption currenttrip;
+        public TripOption currenttrip;
         private Querry querry;
         private List<Stop> order;
         public bool IsMinDays = false, IsMinCost = false, IsMinDaysCost = false;

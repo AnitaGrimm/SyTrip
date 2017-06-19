@@ -96,8 +96,8 @@
     <Compile Include="AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FlightInfo.xaml.cs">
-      <DependentUpon>FlightInfo.xaml</DependentUpon>
+    <Compile Include="Controls\FlightInfoMini.xaml.cs">
+      <DependentUpon>FlightInfoMini.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\HotelInfo.xaml.cs">
       <DependentUpon>HotelInfo.xaml</DependentUpon>
@@ -154,7 +154,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\FlightInfo.xaml">
+    <Page Include="Controls\FlightInfoMini.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

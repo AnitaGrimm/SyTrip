@@ -19,9 +19,9 @@
         </Grid.ColumnDefinitions>
         <Image Grid.Column="2" Source="/дипломная работа;component/Resources/right.gif"/>
         <Image Grid.Column="2" Grid.Row="1" Source="/дипломная работа;component/Resources/left.png"/>
-        <TextBlock  x:Name="Num" Grid.RowSpan="2"/>
-        <TextBlock  x:Name="Name" Grid.Column="1" Grid.RowSpan="2"/>
-        <TextBlock  x:Name="DateArr" Grid.Column="3"/>
-        <TextBlock  x:Name="DateDep" Grid.Column="3" Grid.Row="1"/>
+        <TextBlock  x:Name="Num" Grid.RowSpan="2" FontFamily="Calibri" FontSize="16"/>
+        <TextBlock  x:Name="Name" Grid.Column="1" Grid.RowSpan="2" FontFamily="Calibri" FontSize="16"/>
+        <TextBlock  x:Name="DateArr" Grid.Column="3" FontFamily="Calibri" FontSize="14"/>
+        <TextBlock  x:Name="DateDep" Grid.Column="3" Grid.Row="1" FontFamily="Calibri" FontSize="14"/>
     </Grid>
 </UserControl>

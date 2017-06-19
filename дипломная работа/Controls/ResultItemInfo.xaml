@@ -38,7 +38,7 @@
         <TextBlock x:Name="DeaprturePlace" TextAlignment="Center" FontFamily="Calibri" FontSize="14" Grid.Column="3" Grid.Row="7"/>
         <TextBlock x:Name="DeaprtureDateI" Text="Время отбытия: " FontFamily="Calibri" FontSize="14" Grid.Column="1" Grid.Row="9"/>
         <TextBlock x:Name="DeaprtureDate" TextAlignment="Center" FontFamily="Calibri" FontSize="14" Grid.Column="3" Grid.Row="9"/>
-        <TextBlock x:Name="HotelsCostI" Text="Стоимость отелей: " FontFamily="Calibri" FontSize="14" Grid.Column="1" Grid.Row="11"/>
+        <TextBlock x:Name="HotelsCostI" Text="Стоимость проживания: " FontFamily="Calibri" FontSize="14" Grid.Column="1" Grid.Row="11"/>
         <TextBlock x:Name="HotelsCost" TextAlignment="Center" FontFamily="Calibri" FontSize="14" Grid.Column="3" Grid.Row="11"/>
     </Grid>
 </UserControl>

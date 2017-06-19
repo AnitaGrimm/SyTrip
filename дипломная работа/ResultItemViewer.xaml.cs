@@ -34,6 +34,15 @@ namespace дипломная_работа
             this.ParentPage = ParentPage;
             this.info = info;
             this.numdouble = numdouble;
+            try
+            {
+                i1.SetData(res.currenttrip.Slice[numdouble-1]);
+                i2.SetData(res.currenttrip.Slice[numdouble]);
+            }
+            catch
+            {
+
+            }
             List<HotelInfo> hotelinfos = new List<HotelInfo>();
             foreach (var room in info.Rooms)
                 hotelinfos.Add(new HotelInfo(room));
