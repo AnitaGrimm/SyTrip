@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using дипломная_работа.Controls;
 using дипломная_работа.Model;
 
 namespace дипломная_работа
@@ -58,14 +59,10 @@ namespace дипломная_работа
             }
             if (Results != null)
             {
-                Result[] resarray1 = Results.ToArray();
-                Result[] resarray2 = Results.ToArray();
-                Array.Sort(resarray1.Select(x => x.GetCost()).ToArray(), resarray1);
-                Array.Sort(resarray2.Select(x => x.EndDate.Subtract(x.BeginDate).Ticks).ToArray(), resarray2);
-                resarray1 = resarray1.Take(25).ToArray();
-                resarray2 = resarray2.Reverse().Take(25).ToArray();
-                LBoxCost.ItemsSource = resarray1;
-                LBoxDays.ItemsSource = resarray2;
+                List<ResultControl> r1 = new List<ResultControl>();
+                foreach (var result in Results)
+                    r1.Add(new ResultControl(result));
+                LBox.ItemsSource = r1;
             }
                 tb.Text = "Бюджет: " + Querry.Budget + "   Максимальное кол-во дней: " + Querry.MaxDayCount + "     "+
                 "Дата начала: " + Querry.DateOfBigiinning1.ToShortDateString() + " - " + Querry.DateOfBigiinning1.ToShortDateString() + "   Город начала: " + (Querry.NativeTown.Name_rus != "" ? Querry.NativeTown.Name_rus : Querry.NativeTown.Name) + Environment.NewLine +
@@ -90,7 +87,7 @@ namespace дипломная_работа
         {
             if (e.AddedItems == null || e.AddedItems.Count == 0)
                 return;
-            Result res = (Result)e.AddedItems[0];
+            Result res = ((ResultControl)e.AddedItems[0]).Result;
             MainFrame.Navigate(
                 new ResultViewer(MainFrame, this, res, Querry),
                 null

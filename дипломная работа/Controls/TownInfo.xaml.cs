@@ -28,8 +28,8 @@ namespace дипломная_работа.Controls
             Name.Text = string.Format("{0}({1:f2})", result.Town.Name_rus==""? result.Town.Name: result.Town.Name_rus, result.DepatureDate.Subtract(result.ArrivalDate).TotalDays);
             var ar = result.ArrivalDate;
             var dep = result.DepatureDate;
-            DateArr.Text = string.Format("{0}-{1}-{2} {3}:{4}", ar.Day, ar.Month, ar.Year, ar.Hour, ar.Minute);
-            DateDep.Text = string.Format("{0}-{1}-{2} {3}:{4}", dep.Day, dep.Month, dep.Year, dep.Hour, dep.Minute);
+            DateArr.Text = string.Format("{0}-{1}-{2} {3}:{4}", (ar.Day < 10 ? "0" : "") + ar.Day, (ar.Month < 10 ? "0" : "") + ar.Month, ar.Year, (ar.Hour < 10 ? "0" : "") + ar.Hour, (ar.Minute < 10 ? "0" : "") + ar.Minute);
+            DateDep.Text = string.Format("{0}-{1}-{2} {3}:{4}", (dep.Day < 10 ? "0" : "") + dep.Day, (dep.Month < 10 ? "0" : "") + dep.Month, dep.Year, (dep.Hour < 10 ? "0" : "") + dep.Hour, (dep.Minute < 10 ? "0" : "") + dep.Minute);
         }
     }
 }

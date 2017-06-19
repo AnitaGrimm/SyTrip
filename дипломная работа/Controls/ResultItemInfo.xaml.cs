@@ -44,19 +44,22 @@ namespace дипломная_работа.Controls
                 }
                 if (resitem.ArrivalDate != defaultDate)
                     ArrivalDate.Text = resitem.ArrivalDate.ToShortDateString() + " " + resitem.ArrivalDate.ToShortTimeString();
-                else {
+                else
+                {
                     ArrivalDateI.Visibility = Visibility.Collapsed;
                     IsNativeTown = true;
                 }
                 if (resitem.DeparturePlace != null)
                     DeaprturePlace.Text = resitem.DeparturePlace.Name_rus == "" ? resitem.DeparturePlace.Name : resitem.DeparturePlace.Name_rus;
-                else {
+                else
+                {
                     DeaprturePlaceI.Visibility = Visibility.Collapsed;
                     IsNativeTown = true;
                 }
                 if (resitem.DepatureDate != defaultDate)
                     DeaprtureDate.Text = resitem.DepatureDate.ToShortDateString() + " " + resitem.DepatureDate.ToShortTimeString();
-                else {
+                else
+                {
                     DeaprtureDateI.Visibility = Visibility.Collapsed;
                     IsNativeTown = true;
                 }
@@ -64,7 +67,7 @@ namespace дипломная_работа.Controls
                 {
                     Rooms = resitem.rooms;
                 }
-                else HotelsCostI.Visibility = Visibility.Collapsed;    
+                else HotelsCostI.Visibility = Visibility.Collapsed;
             }
             catch { }
         }

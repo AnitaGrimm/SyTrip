@@ -45,7 +45,7 @@ namespace дипломная_работа.Helpers
                 if (item.ArrivalInfo == null)
                     continue;
                 var to = item.ArrivalInfo;
-                rng.Text += i + ") " + item.ArrivalCost +" rub"+ Environment.NewLine;
+                rng.Text += i + ") ";
                 Airport origin = CommonData.Airports.Where(a => a.Code == to.Segment[0].Leg[0].Origin).FirstOrDefault(), destinamion = CommonData.Airports.Where(a => a.Code == to.Segment[0].Leg[0].Destination).FirstOrDefault();
                 rng.Text += "   " + (origin.Name_rus==""? origin.Name: origin.Name_rus) + " " + to.Segment[0].Leg[0].OriginTerminal + "-" + (destinamion.Name_rus == ""? destinamion.Name: destinamion.Name_rus) + " " + to.Segment[0].Leg[0].DestinationTerminal + Environment.NewLine;
                 var depTime = Computer.ParseDateTime(to.Segment[0].Leg[0].DepartureTime);

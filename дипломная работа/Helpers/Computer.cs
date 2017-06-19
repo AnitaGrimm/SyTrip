@@ -139,7 +139,7 @@ namespace дипломная_работа.Helpers
         public List<DateRangeForHotel> getDates(List<Result> results, Querry querry)
         {
             List<DateRangeForHotel> dates = new List<DateRangeForHotel>();
-            Parallel.ForEach(results, (result) =>
+            foreach(var result in results)
             {
                 foreach (var item in result.Route)
                 {
@@ -150,7 +150,7 @@ namespace дипломная_работа.Helpers
                             dates.Add(new DateRangeForHotel(item.ArrivalDate, item.DepatureDate, item.Town, querry.AdultsCount, querry.ChildrenCount, querry.RoomCount, querry.IsOneHotel));
                     }
                 }
-            });
+            }
             return dates;
         }
         private List<Result> GetResult(List<Stop> Order, Querry Querry,  TripsSearchResponse tripsSearchResponse)

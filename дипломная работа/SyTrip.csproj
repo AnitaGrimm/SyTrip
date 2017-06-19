@@ -108,11 +108,14 @@
     <Compile Include="Controls\HotelsInTown.xaml.cs">
       <DependentUpon>HotelsInTown.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TownInfo.xaml.cs">
-      <DependentUpon>TownInfo.xaml</DependentUpon>
+    <Compile Include="Controls\ResultControl.xaml.cs">
+      <DependentUpon>ResultControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ResultItemInfo.xaml.cs">
       <DependentUpon>ResultItemInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TownInfo.xaml.cs">
+      <DependentUpon>TownInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\StopItem.xaml.cs">
       <DependentUpon>StopItem.xaml</DependentUpon>
@@ -170,11 +173,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\TownInfo.xaml">
+    <Page Include="Controls\ResultControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ResultItemInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TownInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

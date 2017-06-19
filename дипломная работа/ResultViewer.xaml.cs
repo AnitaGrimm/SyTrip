@@ -45,11 +45,10 @@ namespace дипломная_работа
             HotelCosts = new List<double>();
             this.Querry = Querry;
             infos = new List<ResultItemInfo>();
-            flightcost = 0;
+            flightcost = Result.FlightCostTotal;
             foreach (var item in Result.Route)
             {
                 var info = new ResultItemInfo(item);
-                flightcost += item.ArrivalCost;
                 infos.Add(info);
             }
             lb.ItemsSource = infos; foreach (var info in infos)

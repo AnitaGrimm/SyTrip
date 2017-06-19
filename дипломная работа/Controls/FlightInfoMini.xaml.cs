@@ -37,8 +37,8 @@ namespace дипломная_работа.Controls
             Destination.Text = dest == null ? slice.Segment[0].Leg[0].Destination : (dest.Name_rus == "" ? dest.Name : dest.Name_rus);
             var depdate = Computer.ParseDateTime(slice.Segment[0].Leg[0].DepartureTime);
             var ardate = Computer.ParseDateTime(slice.Segment[0].Leg[0].ArrivalTime);
-            DepDate.Text = string.Format("{0}-{1}-{2} {3}:{4}", depdate.Day, depdate.Month, depdate.Year, depdate.Hour, depdate.Minute);
-            ArDate.Text = string.Format("{0}-{1}-{2} {3}:{4}", ardate.Day, ardate.Month, ardate.Year, ardate.Hour, ardate.Minute);
+            DepDate.Text = string.Format("{0}-{1}-{2} {3}:{4}", (depdate.Day < 10 ? "0" : "") + depdate.Day, (depdate.Month < 10 ? "0" : "") + depdate.Month, depdate.Year, (depdate.Hour < 10 ? "0" : "") + depdate.Hour, (depdate.Minute < 10 ? "0" : "") + depdate.Minute);
+            ArDate.Text = string.Format("{0}-{1}-{2} {3}:{4}", (ardate.Day < 10 ? "0" : "") + ardate.Day, (ardate.Month < 10 ? "0" : "") + ardate.Month, ardate.Year, (ardate.Hour < 10 ? "0" : "") + ardate.Hour, (ardate.Minute < 10 ? "0" : "") + ardate.Minute);
             Carrier.Source = DataLoader.getLogoAirport(200, 200, slice.Segment[0].Flight.Carrier);
         }
         private double ParseRub(string saleTotal)

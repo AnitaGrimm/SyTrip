@@ -8,7 +8,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="ResultsListViewer">
 
-    <Grid Background="LightGray">
+    <Grid Background="LightGray" >
         <Grid.RowDefinitions>
             <RowDefinition Height="5"/>
             <RowDefinition Height="20"/>
@@ -33,20 +33,13 @@
         <Grid  Background="#7FFFFFFF" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2">
             <TextBlock x:Name="tb" FontFamily="Calibri" FontSize="14" TextWrapping="Wrap" TextAlignment="Justify"></TextBlock>
         </Grid>
-        <TabControl  Background="#7FFFFFFF" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="5">
-            <TabItem >
-                <TabItem.Header>По стоимости</TabItem.Header>
-                <TabItem.Content>
-                    <ListBox x:Name="LBoxCost" SelectionChanged="LBox_SelectionChanged" Background="#7FFFFFFF"/>
-                </TabItem.Content>
-            </TabItem>
-            <TabItem >
-                <TabItem.Header>По кол-ву дней</TabItem.Header>
-                <TabItem.Content>
-                    <ListBox x:Name="LBoxDays" SelectionChanged="LBox_SelectionChanged" Background="#7FFFFFFF"/>
-                </TabItem.Content>
-            </TabItem>
-        </TabControl>
-        <Image Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Source="Resources/logo.gif"/>
+        <ListBox x:Name="LBox" SelectionChanged="LBox_SelectionChanged" Background="#7FFFFFFF" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Width="{Binding Width, ElementName=LBox}" Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+        <Image Grid.Column="3" Grid.Row="0"  Grid.ColumnSpan="2" Grid.RowSpan="3"  Source="Resources/logo.gif"/>
     </Grid>
 </Page>

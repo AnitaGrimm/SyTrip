@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:дипломная_работа.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="40" d:DesignWidth="300">
+             d:DesignHeight="50" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="5"/>
             <RowDefinition Height="5"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -20,7 +20,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <TextBlock x:Name="Origin" FontFamily="Calibri" FontSize="16" Grid.RowSpan="4" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Image Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Source="/дипломная работа;component/Resources/right.gif" HorizontalAlignment="Center" VerticalAlignment="Center"/>

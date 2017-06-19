@@ -14,7 +14,6 @@ namespace дипломная_работа.Model
         public TripOption tripOpt;
         public SliceInfo ArrivalInfo;
         public SliceInfo DepartureInfo;
-        public double ArrivalCost = 0;
         public Airport ArrivalPlace;
         public DateTime ArrivalDate;
         public DateTime DepatureDate;

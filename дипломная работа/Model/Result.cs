@@ -21,7 +21,7 @@ namespace дипломная_работа.Model
         private List<Stop> order;
         public bool IsMinDays = false, IsMinCost = false, IsMinDaysCost = false;
         public double HotelCost =0;
-
+        public double FlightCostTotal = 0;
         public Result(TripOption currenttrip, Querry querry, List<Stop> order)
         {
             Route = new List<ResultItem>();
@@ -33,9 +33,9 @@ namespace дипломная_работа.Model
             {
                 ResultItem res = new ResultItem();
                 res.Town = order[i].Town;
+                FlightCostTotal = ParseRub(currenttrip.SaleTotal);
                 if (town != -1)
                 {
-                    res.ArrivalCost = ParseRub(currenttrip.SaleTotal);
                     res.tripOpt = currenttrip;
                     res.ArrivalDate = Computer.ParseDateTime(currenttrip.Slice[town].Segment[0].Leg[0].ArrivalTime);
                     res.ArrivalPlace = CommonData.Airports.Where(a => a.Code == currenttrip.Slice[town].Segment[0].Leg[0].Destination).FirstOrDefault();
@@ -62,7 +62,7 @@ namespace дипломная_работа.Model
             order = res.order;
             HotelCost = res.HotelCost;
             IsMinCost = res.IsMinCost; IsMinDays = res.IsMinDays; IsMinDaysCost = res.IsMinDaysCost;
-            Route = res.Route.Select(x => new ResultItem() { Airport = x.Airport, ArrivalCost = x.ArrivalCost, ArrivalDate = x.ArrivalDate, ArrivalInfo = x.ArrivalInfo, ArrivalPlace = x.ArrivalPlace, DayCost = x.DayCost, DaysCount = x.DaysCount, DepartureInfo = x.DepartureInfo, DeparturePlace = x.DeparturePlace, DepatureDate = x.DepatureDate, rooms = x.rooms, Town = x.Town, tripOpt = x.tripOpt }).ToList();
+            Route = res.Route.Select(x => new ResultItem() { Airport = x.Airport, ArrivalDate = x.ArrivalDate, ArrivalInfo = x.ArrivalInfo, ArrivalPlace = x.ArrivalPlace, DayCost = x.DayCost, DaysCount = x.DaysCount, DepartureInfo = x.DepartureInfo, DeparturePlace = x.DeparturePlace, DepatureDate = x.DepatureDate, rooms = x.rooms, Town = x.Town, tripOpt = x.tripOpt }).ToList();
         }
         
         private double ParseRub(string saleTotal)
@@ -73,12 +73,7 @@ namespace дипломная_работа.Model
         }
         public double GetCost()
         {
-            double cost = HotelCost;
-            foreach(var item in Route)
-            {
-                cost += item.ArrivalCost;
-            }
-            return cost;
+            return HotelCost + FlightCostTotal;
         }
         public double GetHotelCost()
         {
@@ -103,7 +98,7 @@ namespace дипломная_работа.Model
             string s = "";
             foreach (var val in Route)
             {
-                s += val.Town.Name_rus + "(" + (val.ArrivalCost != 0 ? (val.ArrivalCost.ToString() + ", ") : "") + (val.ArrivalDate != (new DateTime()) ? val.ArrivalDate.ToShortDateString() : "") + ((val.ArrivalDate != (new DateTime())) && (val.DepatureDate != (new DateTime())) ? " - " : "") + (val.DepatureDate != (new DateTime()) ? val.DepatureDate.ToShortDateString() : "") + ") ";
+                s += val.Town.Name_rus + "(" + (val.ArrivalDate != (new DateTime()) ? val.ArrivalDate.ToShortDateString() : "") + ((val.ArrivalDate != (new DateTime())) && (val.DepatureDate != (new DateTime())) ? " - " : "") + (val.DepatureDate != (new DateTime()) ? val.DepatureDate.ToShortDateString() : "") + ") ";
             }
             s += "Взрослых: " + querry.AdultsCount + " пенс:" + querry.CeniorsCount + " детей(2-11):" + querry.ChildrenCount + " дети(0-1): с местом - " + querry.InfantSeatCount + ", на руках -" + querry.InfantLapCount + Environment.NewLine;
             return s;
@@ -113,7 +108,7 @@ namespace дипломная_работа.Model
             string s = "";
             foreach(var val in Route)
             {
-                s += val.Town.Name_rus+"(" + (val.ArrivalCost!=0? (val.ArrivalCost.ToString()+", "):"") + (val.ArrivalDate!=(new DateTime())?val.ArrivalDate.ToShortDateString():"")+ ((val.ArrivalDate != (new DateTime()))&& (val.DepatureDate!= (new DateTime())) ? " - ":"") + (val.DepatureDate != (new DateTime()) ? val.DepatureDate.ToShortDateString():"") + ") ";
+                s += val.Town.Name_rus+"(" + (val.ArrivalDate!=(new DateTime())?val.ArrivalDate.ToShortDateString():"")+ ((val.ArrivalDate != (new DateTime()))&& (val.DepatureDate!= (new DateTime())) ? " - ":"") + (val.DepatureDate != (new DateTime()) ? val.DepatureDate.ToShortDateString():"") + ") ";
             }
             var ticketsCost = GetCost();
             s += Environment.NewLine + "Стоимость отелей: "  + string.Format("{0:f2}", HotelCost) + " RUB" + Environment.NewLine;
