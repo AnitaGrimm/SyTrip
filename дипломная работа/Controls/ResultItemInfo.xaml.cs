@@ -23,52 +23,8 @@ namespace дипломная_работа.Controls
     /// </summary>
     public partial class ResultItemInfo : UserControl
     {
-        int _selectedRoomsnum= -1;
-        public int SelectedRoomsnum
-        {
-            get { return _selectedRoomsnum; }
-            set
-            {
-                if (value < 0 && value >= resItem.rooms.Count && value!=-1)
-                    return;
-                _selectedRoomsnum = value;
-                if (!IsNativeTown)
-                {
-                    if (value == -1)
-                    {
-                        Background = new SolidColorBrush(Colors.Transparent);
-                    }
-                    else
-                    {
-                        Background = new SolidColorBrush(Colors.LightGreen);
-                        try
-                        {
-                            CurrencyConverter cc = CommonData.CurrencyConverter;
-                            HotelCost = SelectedRooms.Sum(room => cc.getRub(room.total_amount).amount);
-                            HotelsCost.Text = string.Format("{0:f2} руб", HotelCost);
-                        }
-                        catch { }
-                    }
-                }
-            }
-        }
         public double HotelCost { get; private set; } = 0;
-        public List<AmadeusAPI.Room> SelectedRooms
-        {
-            get
-            {
-                if (SelectedRoomsnum == -1)
-                    return null;
-                try
-                {
-                    return resItem.rooms[SelectedRoomsnum];
-                }
-                catch
-                {
-                    return null;
-                }
-            }
-        }
+        public List<AmadeusAPI.Room> Rooms { get; set; }
         public bool IsNativeTown { get; private set; } = false;
         public ResultItem resItem { get; private set; }
         public ResultItemInfo(ResultItem resitem)
@@ -106,11 +62,7 @@ namespace дипломная_работа.Controls
                 }
                 if (!IsNativeTown)
                 {
-                    CurrencyConverter cc = CommonData.CurrencyConverter;
-                    if (SelectedRoomsnum == -1)
-                        HotelsCost.Text = string.Format("{0:f2} - {1:f2} руб", resitem.rooms.Select(roomset => roomset.Sum(room => cc.getRub(room.total_amount).amount)).Min(), resitem.rooms.Select(roomset => roomset.Sum(room => cc.getRub(room.total_amount).amount)).Max());
-                    else
-                        HotelsCost.Text = string.Format("{0:f2} руб", SelectedRooms.Sum(room => cc.getRub(room.total_amount).amount));
+                    Rooms = resitem.rooms;
                 }
                 else HotelsCostI.Visibility = Visibility.Collapsed;    
             }

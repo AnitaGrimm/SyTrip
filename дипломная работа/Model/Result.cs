@@ -20,7 +20,7 @@ namespace дипломная_работа.Model
         private Querry querry;
         private List<Stop> order;
         public bool IsMinDays = false, IsMinCost = false, IsMinDaysCost = false;
-        double minHotelCost=0, maxHotelCost=0;
+        public double HotelCost =0;
 
         public Result(TripOption currenttrip, Querry querry, List<Stop> order)
         {
@@ -53,17 +53,18 @@ namespace дипломная_работа.Model
             this.BeginDate = Route.First().DepatureDate;
             this.EndDate = Route.Last().ArrivalDate;
         }
-       
-        public void SetHotelsForItems(List<DateRangeForHotel> dates)
+        public Result(Result res)
         {
-            Parallel.ForEach(Route, (item) => item.SetRooms(dates));
-            //foreach(var item in Route)
-            //{
-            //    item.SetRooms(dates);
-            //}
-            minHotelCost = GetMinHotelCost();
-            maxHotelCost = GetMaxHotelCost();
+            BeginDate = res.BeginDate;
+            EndDate = res.EndDate;
+            currenttrip = res.currenttrip;
+            querry = res.querry;
+            order = res.order;
+            HotelCost = res.HotelCost;
+            IsMinCost = res.IsMinCost; IsMinDays = res.IsMinDays; IsMinDaysCost = res.IsMinDaysCost;
+            Route = res.Route.Select(x => new ResultItem() { Airport = x.Airport, ArrivalCost = x.ArrivalCost, ArrivalDate = x.ArrivalDate, ArrivalInfo = x.ArrivalInfo, ArrivalPlace = x.ArrivalPlace, DayCost = x.DayCost, DaysCount = x.DaysCount, DepartureInfo = x.DepartureInfo, DeparturePlace = x.DeparturePlace, DepatureDate = x.DepatureDate, rooms = x.rooms, Town = x.Town, tripOpt = x.tripOpt }).ToList();
         }
+        
         private double ParseRub(string saleTotal)
         {
             var rx = new Regex("[^0-9]*(?<val>[0-9]*(.[0-9])?)");
@@ -72,14 +73,14 @@ namespace дипломная_работа.Model
         }
         public double GetCost()
         {
-            double cost = minHotelCost;
+            double cost = HotelCost;
             foreach(var item in Route)
             {
                 cost += item.ArrivalCost;
             }
             return cost;
         }
-        public double GetMinHotelCost()
+        public double GetHotelCost()
         {
             double minCost = 0;
             CurrencyConverter cc = CommonData.CurrencyConverter;
@@ -87,7 +88,7 @@ namespace дипломная_работа.Model
             {
                 try
                 {
-                    minCost += item.rooms.Select(roomset => roomset.Sum(room => cc.getRub(room.total_amount).amount)).Min();
+                    minCost += item.rooms.Sum(room => cc.getRub(room.total_amount).amount);
                 }
                 catch
                 {
@@ -96,20 +97,7 @@ namespace дипломная_работа.Model
             }
             return minCost;
         }
-        public double GetMaxHotelCost()
-        {
-            double maxCost = 0;
-            CurrencyConverter cc = CommonData.CurrencyConverter;
-            foreach (var item in Route)
-            {
-                try
-                {
-                    maxCost += item.rooms.Select(roomset => roomset.Sum(room => cc.getRub(room.total_amount).amount)).Max();
-                }
-                catch { }
-            }
-            return maxCost;
-        }
+        
         public string GetDescription()
         {
             string s = "";
@@ -128,8 +116,8 @@ namespace дипломная_работа.Model
                 s += val.Town.Name_rus+"(" + (val.ArrivalCost!=0? (val.ArrivalCost.ToString()+", "):"") + (val.ArrivalDate!=(new DateTime())?val.ArrivalDate.ToShortDateString():"")+ ((val.ArrivalDate != (new DateTime()))&& (val.DepatureDate!= (new DateTime())) ? " - ":"") + (val.DepatureDate != (new DateTime()) ? val.DepatureDate.ToShortDateString():"") + ") ";
             }
             var ticketsCost = GetCost();
-            s += Environment.NewLine + "Стоимость отелей: "  + string.Format("{0:f2}", minHotelCost) + " - " + string.Format("{0:f2}", maxHotelCost) + " RUB" + Environment.NewLine;
-            s += "Итого: " + string.Format("{0:f2}",ticketsCost + minHotelCost) + " - " + string.Format("{0:f2}",ticketsCost + maxHotelCost) + " RUB" + Environment.NewLine;
+            s += Environment.NewLine + "Стоимость отелей: "  + string.Format("{0:f2}", HotelCost) + " RUB" + Environment.NewLine;
+            s += "Итого: " + string.Format("{0:f2}",ticketsCost + HotelCost) + " RUB" + Environment.NewLine;
             if (IsMinDays)
                 s += "(Макс. кол-во дней)";
             if (IsMinCost)

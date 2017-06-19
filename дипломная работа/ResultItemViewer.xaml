@@ -48,10 +48,9 @@
                 <RowDefinition Height="10"/>
             </Grid.RowDefinitions>
             <TextBlock  Grid.Column="1" Grid.Row="1" x:Name="TownName" FontFamily="Calibri" FontSize="14" />
-            <controls:FlightInfo x:Name="i" Grid.Column="1" Grid.Row="3" Grid.RowSpan="3"/>
-            <ComboBox x:Name="cbox" Grid.Column="3" Grid.Row="1" FontFamily="Calibri" FontSize="14" Background="WhiteSmoke" SelectionChanged="ComboBox_SelectionChanged"/>
-            <ListBox x:Name="HotelInfoViewer" Grid.Column="3" FontFamily="Calibri" FontSize="14"  Grid.Row="3"  Grid.RowSpan="3"/>
-            
+            <controls:FlightInfo x:Name="i1" Grid.Column="1" Grid.Row="3"/>
+            <controls:FlightInfo x:Name="i2" Grid.Column="1" Grid.Row="5"/>
+            <ListBox x:Name="HotelInfoViewer" Grid.Column="3" FontFamily="Calibri" FontSize="14" Grid.Row="3" Grid.RowSpan="3" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Hidden"/>
         </Grid>
         <Image Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3"  Source="Resources/logo.gif"/>
     </Grid>

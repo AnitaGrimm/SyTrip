@@ -63,7 +63,7 @@ namespace дипломная_работа.Helpers
                     continue;
                 rng.Text +=item.resItem.Town.Name_rus==""? item.resItem.Town.Name: item.resItem.Town.Name_rus+":" + Environment.NewLine;
                 i = 1;
-                foreach(var Room in item.SelectedRooms)
+                foreach(var Room in item.Rooms)
                 {
                     rng.Text += "   "+i+") " + "Название: " + Room.hotel.property_name + Environment.NewLine;
                     try

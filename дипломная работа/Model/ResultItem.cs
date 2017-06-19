@@ -24,13 +24,7 @@ namespace дипломная_работа.Model
         public int DaysCount = 0;
         public double DayCost = 0;
         public List<AmadeusAPI.Room> rooms = new List<AmadeusAPI.Room>();
-
-        public void SetRooms(List<DateRangeForHotel> dates)
-        {
-            var date = dates.Where(d => d.IsDateAndTownApproach(ArrivalDate, DepatureDate, Town)).FirstOrDefault();
-            if (date != null)
-                rooms = date.Rooms;
-        }
+        
         public override string ToString()
         {
             string res = "";

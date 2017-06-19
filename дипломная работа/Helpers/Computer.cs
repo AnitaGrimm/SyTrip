@@ -102,11 +102,39 @@ namespace дипломная_работа.Helpers
             var dates = getDates(result, Querry);
             Result[] resarray = result.ToArray();
             Array.Sort(resarray.Select(x => x.GetCost()).ToArray(), resarray);
-            resarray = result.Take(200).ToArray();
+            resarray = result.Take(1).ToArray();
             pb.Dispatcher.BeginInvoke(new Action(() => { pb.Value += val; }));
-            Parallel.ForEach(resarray, (res) => res.SetHotelsForItems(dates));
+            List<Result> ResWithhotels = new List<Result>();
+
+            foreach(var res in resarray)
+                ResWithhotels.AddRange(GetResWithHotels(res,dates));
             pb.Dispatcher.BeginInvoke(new Action(() => { pb.Value += val; }));
-            return resarray.ToList();
+            return ResWithhotels;
+        }
+        public List<Result> GetResWithHotels(Result res, List<DateRangeForHotel> dates)
+        {
+            var results = new List<Result>();
+            MakeResWithHotels(ref results, res, dates);
+            return results;
+        }
+        public void MakeResWithHotels(ref List<Result> results, Result result, List<DateRangeForHotel> dates, int resultitemcount=1)
+        {
+            if (resultitemcount > result.Route.Count - 2)
+            {
+                result.HotelCost = result.GetHotelCost();
+                results.Add(result);
+                return;
+            }
+            var date = dates.Where(d => d.IsDateAndTownApproach(result.Route[resultitemcount].ArrivalDate, result.Route[resultitemcount].DepatureDate, result.Route[resultitemcount].Town)).FirstOrDefault();
+            if (date?.Rooms == null && resultitemcount == 0)
+                MakeResWithHotels(ref results, result, dates, resultitemcount + 1);
+            else
+            foreach(var roomset in date.Rooms)
+            {
+                var r = new Result(result);
+                r.Route[resultitemcount].rooms = roomset;
+                MakeResWithHotels(ref results, r, dates, resultitemcount + 1);
+            }
         }
         public List<DateRangeForHotel> getDates(List<Result> results, Querry querry)
         {
