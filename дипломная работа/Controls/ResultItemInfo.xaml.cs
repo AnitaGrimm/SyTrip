@@ -66,6 +66,16 @@ namespace дипломная_работа.Controls
                 if (!IsNativeTown)
                 {
                     Rooms = resitem.rooms;
+                    CurrencyConverter cc = CommonData.CurrencyConverter;
+                    try
+                    {
+                        HotelCost = resitem.rooms.Sum(room => cc.getRub(room.total_amount).amount);
+                    }
+                    catch
+                    {
+
+                    }
+                    HotelsCostI.Text = HotelCost + " руб";
                 }
                 else HotelsCostI.Visibility = Visibility.Collapsed;
             }

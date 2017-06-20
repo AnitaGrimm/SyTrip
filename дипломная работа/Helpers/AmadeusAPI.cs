@@ -456,7 +456,7 @@ namespace дипломная_работа.Helpers
                     try
                     {
                         var res = new Result() { property_code = match.Groups["property_code"].Value, property_name = match.Groups["property_name"].Value, location = Location.Parse(match.Groups["location"].Value), address = Address.Parse(match.Groups["address"].Value), total_price = Price.Parse(match.Groups["total_price"].Value), min_daily_rate = Price.Parse(match.Groups["min_daily_rate"].Value), contacts = Contact.ParseContacts(match.Groups["contacts"].Value), amenities = Amenity.ParseAmenities(match.Groups["amenities"].Value), awards = Award.ParseAwards(match.Groups["awards"].Value), images = HotelImage.ParseHotelImages(match.Groups["images"].Value), rooms = Room.ParseRooms(match.Groups["rooms"].Value, allrates) };
-                        res.rating = (res.awards.Count == 0 ? 0 : (res.awards.Sum(x=> { return double.TryParse(x.rating, out varfortryparse) ? varfortryparse : 0; })));
+                        res.rating = (res.awards.Sum(x=> { return double.TryParse(x.rating, out varfortryparse) ? double.Parse(x.rating): 0; }));
                         foreach (var room in res.rooms)
                             room.hotel = res;
                         results.Add(res);

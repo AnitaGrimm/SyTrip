@@ -8,7 +8,8 @@
              d:DesignHeight="50" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="10.149"/>
+            <RowDefinition Height="9.851"/>
             <RowDefinition Height="5"/>
             <RowDefinition Height="5"/>
             <RowDefinition Height="20"/>
@@ -22,12 +23,13 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="Origin" FontFamily="Calibri" FontSize="16" Grid.RowSpan="4" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Image Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Source="/дипломная работа;component/Resources/right.gif" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBlock x:Name="Destination" FontFamily="Calibri" FontSize="16" Grid.Column="2" Grid.RowSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
-        <Image Grid.Column="4" Grid.Row="1" Grid.RowSpan="2" Source="/дипломная работа;component/Resources/down.gif" />
-        <TextBlock x:Name="DepDate" FontFamily="Calibri" FontSize="14" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
-        <TextBlock x:Name="ArDate" FontFamily="Calibri" FontSize="14" Grid.Column="3" Grid.ColumnSpan="3"  Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
-        <Image x:Name="Carrier" Grid.Column="6" Grid.RowSpan="4"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock x:Name="Origin" FontFamily="Calibri" FontSize="16" Grid.RowSpan="4" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="24,4.851,23,15" Grid.Row="1"/>
+        <Image Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Source="/дипломная работа;component/Resources/right.gif" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,1"/>
+        <TextBlock x:Name="Destination" FontFamily="Calibri" FontSize="16" Grid.Column="2" Grid.RowSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Margin="23,4.851,24,15" Grid.Row="1"/>
+        <Image Grid.Column="4" Grid.Row="2" Grid.RowSpan="2" Source="/дипломная работа;component/Resources/down.gif" />
+        <TextBlock x:Name="DepDate" FontFamily="Calibri" FontSize="14" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"  Grid.RowSpan="2" Grid.ColumnSpan="3"/>
+        <TextBlock x:Name="ArDate" FontFamily="Calibri" FontSize="14" Grid.Column="3"  Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.ColumnSpan="3"/>
+        <Image x:Name="Carrier" Grid.Column="6"  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.RowSpan="4"/>
+        <TextBlock x:Name="Cabin" FontFamily="Calibri" FontSize="14" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
     </Grid>
 </UserControl>

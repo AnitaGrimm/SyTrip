@@ -93,13 +93,22 @@
         <TextBlock Text="Кол-во комнат:" FontFamily="Calibri" FontSize="14" Grid.Row="19" Grid.Column="4" Grid.ColumnSpan="3"></TextBlock>
         <TextBox FontFamily="Calibri" FontSize="14" Grid.Row="19" Grid.Column="8" TextChanged="TextBox_TextChanged_7" Text="1"/>
         <TextBlock Text="Дети(2-11):" FontFamily="Calibri" FontSize="14" Grid.Row="15" Grid.Column="10" HorizontalAlignment="Right"></TextBlock>
-        <TextBox FontFamily="Calibri" FontSize="14" Grid.Row="15" Grid.Column="12" Grid.ColumnSpan="7" TextChanged="TextBox_TextChanged_1" Text="0"/>
+        <TextBox FontFamily="Calibri" FontSize="14" Grid.Row="15" Grid.Column="12" Grid.ColumnSpan="5" TextChanged="TextBox_TextChanged_1" Text="0"/>
         <TextBlock Text="Дети(0-1):" FontFamily="Calibri" FontSize="14" Grid.Row="17" Grid.Column="10" ></TextBlock>
         <TextBlock Text="без места" FontFamily="Calibri" FontSize="14" Grid.Row="17" Grid.Column="12" ></TextBlock>
-        <TextBox FontFamily="Calibri" FontSize="14" Grid.Row="17" Grid.Column="14" TextChanged="TextBox_TextChanged_4" Text="0" Grid.ColumnSpan="5"/>
+        <TextBox FontFamily="Calibri" FontSize="14" Grid.Row="17" Grid.Column="14" TextChanged="TextBox_TextChanged_4" Text="0" Grid.ColumnSpan="3"/>
         <TextBlock Text="с местом" FontFamily="Calibri" FontSize="14" Grid.Row="19" Grid.Column="12" />
-        <TextBox FontFamily="Calibri" FontSize="14" Grid.Row="19" Grid.Column="14" TextChanged="TextBox_TextChanged_5" Text="0" Grid.ColumnSpan="5"/>
-        <CheckBox Content="искать комнаты в одном отеле" FontFamily="Calibri" FontSize="14" Grid.Column="4" Grid.Row="21" Grid.ColumnSpan="15" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" IsChecked="True"/>
+        <TextBox FontFamily="Calibri" FontSize="14" Grid.Row="19" Grid.Column="14" TextChanged="TextBox_TextChanged_5" Text="0" Grid.ColumnSpan="3"/>
+        <CheckBox Content="искать комнаты в одном отеле" FontFamily="Calibri" FontSize="14" Grid.Column="4" Grid.Row="21" Grid.ColumnSpan="13" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" IsChecked="True"/>
+        <GroupBox FontFamily="Calibri" FontSize="14" Header="Класс перелетов:" Grid.Column="18" Grid.Row="15" Grid.RowSpan="7">
+            <StackPanel>
+                <RadioButton x:Name="ec" FontFamily="Calibri" FontSize="14" Content="Эконом"/>
+                <RadioButton x:Name="ecp" FontFamily="Calibri" FontSize="14" Content="Эконом премиум"/>
+                <RadioButton x:Name="bu" FontFamily="Calibri" FontSize="14" Content="Бизнесс"/>
+                <RadioButton x:Name="fi" FontFamily="Calibri" FontSize="14" Content="Первый"/>
+                <RadioButton x:Name="any" FontFamily="Calibri" FontSize="14" Content="Любой" IsChecked="True"/>
+            </StackPanel>
+        </GroupBox>
         <Image Grid.ColumnSpan="3" Grid.Column="20" Grid.Row="0" Grid.RowSpan="3" Source="Resources/logo.gif"/>
     </Grid>
 </Page>

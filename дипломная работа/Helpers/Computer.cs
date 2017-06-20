@@ -16,7 +16,7 @@ namespace дипломная_работа.Helpers
 {
     class Computer
     {
-        int servicecount = 0;
+        int servicecount = 6;
         public Computer() { }
         List<QPXExpressService> service = new List<Google.Apis.QPXExpress.v1.QPXExpressService>(){
             new QPXExpressService(new BaseClientService.Initializer()
@@ -48,6 +48,16 @@ namespace дипломная_работа.Helpers
         {
             ApiKey = "AIzaSyDuOJxymb3TqDopvo_eGrk2EOga-_sWz-g",
             ApplicationName = "Daimto QPX Express Sample",
+        }),
+        new QPXExpressService(new BaseClientService.Initializer()
+        {
+            ApiKey = "AIzaSyAqlMlIYbje6s30MlwjHDtCwX3VK2U_F-8",
+            ApplicationName = "Daimto QPX Express Sample",
+        }),
+        new QPXExpressService(new BaseClientService.Initializer()
+        {
+            ApiKey = "AIzaSyBO15z6247OCnuGCy_0_6dKh6rVP3JXuJo",
+            ApplicationName = "Daimto QPX Express Sample",
         })
         };
         WebClient wb = new WebClient();
@@ -75,6 +85,7 @@ namespace дипломная_работа.Helpers
                     var arr = request.Request.Slice.ToArray();
                     Array.Sort(request.Request.Slice.Select(x => ParseDate(x.Date)).ToArray(), arr);
                     request.Request.Slice = arr.ToList();
+                    
                     try
                     {
                         var res = service[servicecount].Trips.Search(request).Execute();
@@ -107,10 +118,10 @@ namespace дипломная_работа.Helpers
             List<Result> ResWithhotels = new List<Result>();
             foreach(var res in resarray)
                 ResWithhotels.AddRange(GetResWithHotels(res,dates));
-            pb.Dispatcher.BeginInvoke(new Action(() => { pb.Value += val; }));
-            return ResWithhotels.Where(
+            ResWithhotels = ResWithhotels = ResWithhotels.Where(
                 x => x.HotelCost + x.FlightCostTotal <= Querry.Budget
                 ).ToList();
+            return ResWithhotels;
         }
         public List<Result> GetResWithHotels(Result res, List<DateRangeForHotel> dates)
         {
@@ -123,6 +134,7 @@ namespace дипломная_работа.Helpers
             if (resultitemcount > result.Route.Count - 2)
             {
                 result.HotelCost = result.GetHotelCost();
+                result.AverageHotelRating = result.GetAverageHotelRating();
                 results.Add(result);
                 return;
             }
@@ -134,6 +146,14 @@ namespace дипломная_работа.Helpers
             {
                 var r = new Result(result);
                 r.Route[resultitemcount].rooms = roomset;
+                    try
+                    {
+                        r.Route[resultitemcount].AverageHotelRating = roomset.Average(rs => rs.hotel.rating);
+                    }
+                    catch
+                    {
+                        r.Route[resultitemcount].AverageHotelRating = 0;
+                    }
                 MakeResWithHotels(ref results, r, dates, resultitemcount + 1);
             }
         }
@@ -309,10 +329,22 @@ namespace дипломная_работа.Helpers
             res.MaxStops = 1;
             res.Origin = Querry[th - 1].Town.Code;
             res.Destination = Querry.NativeTown.Code;
+            res.PreferredCabin = GetCabin(Querry.prefferedCabin);
             date = date.AddDays((double)numdays[th - 1] + 1);
             res.Date = date.Year + "-" + (date.Month < 10 ? "0" : "") + date.Month + "-" + (date.Day < 10 ? "0" : "") + date.Day;
             resultEthalon.Add(res);
             return resultEthalon;
+        }
+        string GetCabin(Cabin cabin)
+        {
+            switch (cabin)
+            {
+                case Cabin.BUSINESS: return "BUSINESS";
+                case Cabin.COACH: return "COACH";
+                case Cabin.FIRST: return "FIRST";
+                case Cabin.PREMIUM_COACH: return "PREMIUM_COACH";
+                default:return "";
+            }
         }
         private List<List<SliceInput>> GetListForOneType(int i, Querry Querry, ref List<List<Stop>> Order, List<Stop> orderItem)
         {

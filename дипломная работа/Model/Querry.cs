@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace дипломная_работа.Model
 {
+    public enum Cabin { COACH, PREMIUM_COACH, BUSINESS, FIRST, NONE }
     public class Querry: ObservableCollection<Stop>
     {
         double _budget;
@@ -17,6 +18,7 @@ namespace дипломная_работа.Model
         public int MaxDayCount = 0;
         public int RoomCount = 0;
         public bool IsOneHotel = false;
+        public Cabin prefferedCabin = Cabin.COACH;
         public double Budget
         {
             get

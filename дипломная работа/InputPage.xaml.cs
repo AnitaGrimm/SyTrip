@@ -74,10 +74,23 @@ namespace дипломная_работа
             {
                 Querry.DateOfBigiinning1 = date1.SelectedDate.Value;
                 Querry.DateOfBigiinning2 = date2.SelectedDate.Value;
+                Querry.prefferedCabin = GetCabin();
                 MainFrame.Navigate(
                     new ResultLoader(MainFrame, Querry, this),
                     null);
             }
+        }
+        Cabin GetCabin()
+        {
+            if (ec.IsChecked.HasValue && ec.IsChecked.Value)
+                return Cabin.COACH;
+            if (ecp.IsChecked.HasValue && ecp.IsChecked.Value)
+                return Cabin.PREMIUM_COACH;
+            if (bu.IsChecked.HasValue && bu.IsChecked.Value)
+                return Cabin.BUSINESS;
+            if (fi.IsChecked.HasValue && fi.IsChecked.Value)
+                return Cabin.FIRST;
+            return Cabin.NONE;
         }
         private bool IsProperPeople(Querry querry)
         {

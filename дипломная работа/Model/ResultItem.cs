@@ -23,7 +23,7 @@ namespace дипломная_работа.Model
         public int DaysCount = 0;
         public double DayCost = 0;
         public List<AmadeusAPI.Room> rooms = new List<AmadeusAPI.Room>();
-        
+        public double AverageHotelRating = 0;
         public override string ToString()
         {
             string res = "";

@@ -52,6 +52,7 @@ namespace дипломная_работа.Helpers
                 var ArTime = Computer.ParseDateTime(to.Segment[0].Leg[0].ArrivalTime);
                 rng.Text += "   Дата вылета: " + depTime.ToShortDateString() + " " + depTime.ToShortTimeString() + Environment.NewLine;
                 rng.Text += "   Дата посадки: " + ArTime.ToShortDateString() + " " + ArTime.ToShortTimeString() + Environment.NewLine;
+                rng.Text += "   Класс: " + to.Segment[0].Cabin + Environment.NewLine;
                 rng.Text += "   Авиакомпания: " + to.Segment[0].Flight.Carrier + Environment.NewLine;
                 i++;
             }

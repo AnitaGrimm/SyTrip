@@ -11,8 +11,10 @@ using System.Threading;
 
 namespace дипломная_работа.Model
 {
+    
     public class Result
     {
+
         public List<ResultItem> Route;
         public DateTime BeginDate;
         public DateTime EndDate;
@@ -22,6 +24,8 @@ namespace дипломная_работа.Model
         public bool IsMinDays = false, IsMinCost = false, IsMinDaysCost = false;
         public double HotelCost =0;
         public double FlightCostTotal = 0;
+        public double AverageHotelRating = 0;
+        public string Class;
         public Result(TripOption currenttrip, Querry querry, List<Stop> order)
         {
             Route = new List<ResultItem>();
@@ -66,6 +70,7 @@ namespace дипломная_работа.Model
             order = res.order;
             HotelCost = res.HotelCost;
             FlightCostTotal = res.FlightCostTotal;
+            AverageHotelRating = res.AverageHotelRating;
             IsMinCost = res.IsMinCost; IsMinDays = res.IsMinDays; IsMinDaysCost = res.IsMinDaysCost;
             Route = res.Route.Select(x => new ResultItem() { Airport = x.Airport, ArrivalDate = x.ArrivalDate, ArrivalInfo = x.ArrivalInfo, ArrivalPlace = x.ArrivalPlace, DayCost = x.DayCost, DaysCount = x.DaysCount, DepartureInfo = x.DepartureInfo, DeparturePlace = x.DeparturePlace, DepatureDate = x.DepatureDate, rooms = x.rooms, Town = x.Town, tripOpt = x.tripOpt }).ToList();
         }
@@ -125,6 +130,11 @@ namespace дипломная_работа.Model
             if (IsMinDaysCost)
                 s += "(Мин. стоимость на день)";
             return s;
+        }
+
+        public double GetAverageHotelRating()
+        {
+            return Route?.First()?.AverageHotelRating??0;
         }
     }
 }

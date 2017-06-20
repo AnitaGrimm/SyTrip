@@ -40,7 +40,21 @@ namespace дипломная_работа.Controls
             DepDate.Text = string.Format("{0}-{1}-{2} {3}:{4}", (depdate.Day < 10 ? "0" : "") + depdate.Day, (depdate.Month < 10 ? "0" : "") + depdate.Month, depdate.Year, (depdate.Hour < 10 ? "0" : "") + depdate.Hour, (depdate.Minute < 10 ? "0" : "") + depdate.Minute);
             ArDate.Text = string.Format("{0}-{1}-{2} {3}:{4}", (ardate.Day < 10 ? "0" : "") + ardate.Day, (ardate.Month < 10 ? "0" : "") + ardate.Month, ardate.Year, (ardate.Hour < 10 ? "0" : "") + ardate.Hour, (ardate.Minute < 10 ? "0" : "") + ardate.Minute);
             Carrier.Source = DataLoader.getLogoAirport(200, 200, slice.Segment[0].Flight.Carrier);
+            Cabin.Text = TranslateCabin(slice.Segment[0].Cabin);
         }
+
+        private string TranslateCabin(string cabin)
+        {
+            switch(cabin)
+            {
+                case "COACH":return "эконом";
+                case "PREMIUM_COACH": return "премиум эконом";
+                case "BUSINESS": return "бизнес";
+                case "FIRST": return "первый";
+                default: return "";
+            }
+        }
+
         private double ParseRub(string saleTotal)
         {
             var rx = new Regex("[^0-9]*(?<val>[0-9]*(.[0-9])?)");

@@ -53,11 +53,12 @@ namespace дипломная_работа
             }
             lb.ItemsSource = infos; foreach (var info in infos)
                 if (info.resItem.ArrivalDate == new DateTime() || info.resItem.DepatureDate == new DateTime())
-                    HotelCosts.Add(0);
-                else HotelCosts.Add(-1);
+                    HotelCosts.Add(info.HotelCost);
+                else HotelCosts.Add(0);
             tb.Text = "Даты поездки: " + Result.BeginDate.ToShortDateString() +" - "+ Result.EndDate.ToShortDateString() + Environment.NewLine
                 +"Взрослых: " + Querry.AdultsCount+ " пенс:" + Querry.CeniorsCount + " детей(2-11):" + Querry.ChildrenCount + " дети(0-1): с местом - " + Querry.InfantSeatCount + ", на руках -" + Querry.InfantLapCount + Environment.NewLine +
                 "Комнат: " + Querry.RoomCount + ", " + (Querry.IsOneHotel ? "поиск в одном отеле" : "поиск в разных отелях");
+            MakeCost();
         }
         string GetInfo(Result res)
         {
