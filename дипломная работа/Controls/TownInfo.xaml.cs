@@ -25,7 +25,7 @@ namespace дипломная_работа.Controls
         {
             InitializeComponent();
             Num.Text = townnum.ToString();
-            Name.Text = string.Format("{0}({1:f2})", result.Town.Name_rus==""? result.Town.Name: result.Town.Name_rus, result.DepatureDate.Subtract(result.ArrivalDate).TotalDays);
+            Name.Text = string.Format("{0}({1:f2} дней)", result.Town.Name_rus==""? result.Town.Name: result.Town.Name_rus, result.DepatureDate.Subtract(result.ArrivalDate).TotalDays);
             var ar = result.ArrivalDate;
             var dep = result.DepatureDate;
             DateArr.Text = string.Format("{0}-{1}-{2} {3}:{4}", (ar.Day < 10 ? "0" : "") + ar.Day, (ar.Month < 10 ? "0" : "") + ar.Month, ar.Year, (ar.Hour < 10 ? "0" : "") + ar.Hour, (ar.Minute < 10 ? "0" : "") + ar.Minute);

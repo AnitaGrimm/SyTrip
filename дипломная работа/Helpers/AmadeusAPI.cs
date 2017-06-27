@@ -116,6 +116,7 @@ namespace дипломная_работа.Helpers
             public double longitude { get; set; }
             public static Location Parse(string s)
             {
+                Tools.SetNumberDecimalSeparator();
                 Regex rx = new Regex("([\n"+@"\s"+"\r]*)\"latitude\""+@"\s"+"*:"+@"\s"+"*(?<latitude>[0-9.-]+),([\n"+@"\s"+"\r]*)\"longitude\""+@"\s"+"*:"+@"\s"+"*(?<longitude>[0-9.-]+)([\n"+@"\s"+"\r]*)");
                 var match = rx.Match(s);
                 try
@@ -145,7 +146,6 @@ namespace дипломная_работа.Helpers
             public string country { get; set; }
             public static Address Parse(string s)
             {
-                //([\s\n\r]*)"line1"\s*:\s*"(?<line1>[^"]*)",([\s\n\r]*)"city"\s*:\s*"(?<city>[^"]*)",([\s\n\r]*)"postal_code"\s*:\s"(?<postal_code>[^']*)([\s\n\r]*)
                 Regex rx = new Regex("(["+@"\s"+"\n\r]*)\"line1\""+@"\s"+"*:"+@"\s"+"*\"(?<line1>[^\"]*)\",(["+@"\s"+"\n\r]*)\"city\""+@"\s"+"*:"+@"\s"+"*\"(?<city>[^\"]*)\",(["+@"\s"+"\n\r]*)\"postal_code\""+@"\s"+"*:"+@"\s"+"\"(?<postal_code>[^']*)(["+@"\s"+"\n\r]*)");
                 var match = rx.Match(s);
                 try
@@ -169,6 +169,7 @@ namespace дипломная_работа.Helpers
             public string currency { get; set; }
             public static Price Parse(string s)
             {
+                Tools.SetNumberDecimalSeparator();
                 Regex rx= new Regex("\"amount\""+@"\s"+"*:"+@"\s"+"\"(?<amount>[^\"]*)\",([\n\r"+@"\s"+"]*)\"currency\""+@"\s"+"*:"+@"\s"+"*\"(?<currency>[^\"]*)\"");
                 Match match = rx.Match(s);
                 try
@@ -189,6 +190,7 @@ namespace дипломная_работа.Helpers
             public double price { get; set; }
             public static List<Rate> ParseRates(ref string s)
             {
+                Tools.SetNumberDecimalSeparator();
                 List<Rate> result = new List<Rate>();
                 Regex rx = new Regex(@"{([" + @"\s" + "\n\r]*)\"start_date\"" + @"\s" + "*:" + @"\s" + "*\"(?<start_date>[^\"]*)\"," + @"\s" + "*\"end_date\"" + @"\s" + "*:" + @"\s" + "*\"(?<end_date>[^\"]*)\",([" + @"\s" + "\n\r]*)\"currency_code\"" + @"\s" + "*:" + @"\s" + "*\"(?<currency_code>[^\"]*)\",([" + @"\s" + "\n\r]*)\"price\"" + @"\s" + "*:" + @"\s" + "*(?<price>[0-9.]+)([" + @"\s" + "\r\n]*)}");
                 var matches = rx.Matches(s);
@@ -240,16 +242,36 @@ namespace дипломная_работа.Helpers
             public int number_of_beds { get; set; }
             public static RoomTypeInfo Parse(string s)
             {
-                Regex rx = new Regex("\"room_type\""+@"\s"+"*:"+@"\s"+"*\"(?<room_type>[^\"]*)\",(["+@"\s"+"\r\n]*)\"bed_type\""+@"\s"+"*:"+@"\s"+"*\"(?<bed_type>[^\"]*)\",["+@"\s"+"\r\n]*\"number_of_beds\""+@"\s"+"*:"+@"\s"+"*\"(?<number_of_beds>[^\"]*)\"");
-                Match match = rx.Match(s);
+                Regex rt = new Regex("\"room_type\""+@"\s"+"*:"+@"\s"+"*\"(?<room_type>[^\"]*)\"");
+                Match match = rt.Match(s);
+                var res = new RoomTypeInfo();
                 try
                 {
-                    return new RoomTypeInfo { bed_type = match.Groups["bed_type"].Value, room_type = match.Groups["room_type"].Value, number_of_beds = int.Parse(match.Groups["number_of_beds"].Value) };
+                    res.bed_type = match.Groups["room_type"].Value; 
                 }
                 catch
                 {
-                    return new RoomTypeInfo();
+                    res.bed_type = "";
                 }
+                Regex br = new Regex("\"bed_type\""+@"\s"+"*:"+@"\s"+"*\"(?<bed_type>[^\"]*)\"");
+                match = br.Match(s);
+                try
+                {
+                    res.room_type = match.Groups["bed_type"].Value; 
+                }
+                catch {
+                    res.room_type = "";
+                }
+                Regex nob = new Regex("\"number_of_beds\"" + @"\s" + "*:" + @"\s" + "*\"(?<number_of_beds>[^\"]*)");
+                match = nob.Match(s);
+                try
+                {
+                    res.number_of_beds = int.Parse(match.Groups["number_of_beds"].Value);
+                }
+                catch {
+                    res.number_of_beds = 0;
+                }
+                return res;
             }
         }
         public class Room
@@ -263,9 +285,10 @@ namespace дипломная_работа.Helpers
             public string description { get; set; }
             public RoomTypeInfo room_type_info { get; set; }
             public string rate_type_code { get; set; }
+            static string parser = "{([\n\r" + @"\s" + "]*)\"booking_code\"" + @"\s" + "*:" + @"\s" + "*\"(?<booking_code>[^\"]*)\",([\n\r" + @"\s" + "]*)\"room_type_code\"" + @"\s" + "*:" + @"\s" + "*\"(?<room_type_code>[^\"]*)\",([\n\r" + @"\s" + "]*)\"rate_plan_code\"" + @"\s" + ":" + @"\s" + "\"(?<rate_plan_code>[^\"]*)\",([\n\r" + @"\s" + "]*)\"total_amount\"" + @"\s" + "*:" + @"\s" + "*{(?<total_amount>[^}]*)},([\n\r" + @"\s" + "]*)\"rates\"" + @"\s" + ":" + @"\s" + "{(?<rates>[^}]*)},([\n\r" + @"\s" + "]*)\"descriptions\"" + @"\s" + "*:" + @"\s" + "(?<descriptions>[^}]*)},([\n\r" + @"\s" + "]*)\"room_type_info\"" + @"\s" + "*:" + @"\s" + "*{(?<room_type_info>[^}]*)},([\n\r" + @"\s" + "]*)\"rate_type_code\"" + @"\s" + "*:" + @"\s" + "*\"(?<rate_type_code>[^\"]*)\"([\n\r" + @"\s" + "]*)}";
             public static Room Parse(string s)
             {
-                Regex rx = new Regex("([\n\r" + @"\s" + "]*)\"booking_code\"" + @"\s" + "*:" + @"\s" + "*\"(?<booking_code>[^\"]*)\",([\n\r" + @"\s" + "]*)\"room_type_code\"" + @"\s" + "*:" + @"\s" + "*\"(?<room_type_code>[^\"]*)\",([\n\r" + @"\s" + "]*)\"rate_plan_code\"" + @"\s" + "*:" + @"\s" + "*\"(?<rate_plan_code>[^\"]*)\",([" + @"\s" + "\r\n]*)\"total_amount\"" + @"\s" + "*:" + @"\s" + "*{(?<price>[^}]*)},([" + @"\s" + "\n\r]*)\"rates\"" + @"\s" + "*:" + @"\s" + @"*\[(?<rates>[^\]]*)\],([" + @"\s" + "\n\r]*)\"descriptions\"" + @"\s" + "*:" + @"\s" + @"*\[(?<descriptions>[^\]]*)\],([\n\r" + @"\s" + "]*)\"room_type_info\"" + @"\s" + "*:" + @"\s" + "*{(?<room_type_info>[^}]*)},([\n\r" + @"\s" + "]*)\"rate_type_code\"" + @"\s" + "*:" + @"\s" + "*\"(?<rate_type_code>[^\"]*)\"([\n\r" + @"\s" + "]*)");
+                Regex rx = new Regex(parser);
                 var match = rx.Match(s);
                 try
                 {
@@ -279,7 +302,7 @@ namespace дипломная_работа.Helpers
             public static List<Room> ParseRooms(string s, List<Rate> allRates)
             {
                 List<Room> results = new List<Room>();
-                Regex rx = new Regex("{([\n\r"+@"\s"+"]*)\"booking_code\""+@"\s"+"*:"+@"\s"+"*\"(?<booking_code>[^\"]*)\",([\n\r"+@"\s"+"]*)\"room_type_code\""+@"\s"+"*:"+@"\s"+"*\"(?<room_type_code>[^\"]*)\",([\n\r"+@"\s"+"]*)\"rate_plan_code\""+@"\s"+":"+@"\s"+"\"(?<rate_plan_code>[^\"]*)\",([\n\r"+@"\s"+"]*)\"total_amount\""+@"\s"+"*:"+@"\s"+"*{(?<total_amount>[^}]*)},([\n\r"+@"\s"+"]*)\"rates\""+@"\s"+":"+@"\s"+"{(?<rates>[^}]*)},([\n\r"+@"\s"+"]*)\"descriptions\""+@"\s"+"*:"+@"\s"+"(?<descriptions>[^}]*)},([\n\r"+@"\s"+"]*)\"room_type_info\""+@"\s"+"*:"+@"\s"+"*{(?<room_type_info>[^}]*)},([\n\r"+@"\s"+"]*)\"rate_type_code\""+@"\s"+"*:"+@"\s"+"*\"(?<rate_type_code>[^\"]*)\"([\n\r"+@"\s"+"]*)}");
+                Regex rx = new Regex(parser);
                 var matches = rx.Matches(s);
                 foreach (Match match in matches)
                 {
@@ -438,6 +461,7 @@ namespace дипломная_работа.Helpers
             }
             static List<Result> GetResult(string response,Town town)
             {
+                Tools.SetNumberDecimalSeparator();
                 var townLocation = new Location() { latitude = town.Coordinates.latitude, longitude = town.Coordinates.longitude };
                 List<Rate> allrates = Rate.ParseRates(ref response);
                 Regex ratesRX = new Regex("\"rates\"" + @"\s*:\s*\[[^\]]*\]");

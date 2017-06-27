@@ -27,6 +27,8 @@
             <RowDefinition />
             <RowDefinition Height="5"/>
             <RowDefinition />
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="25"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock x:Name="TownName" TextAlignment="Center" FontFamily="Calibri" FontSize="14" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"/>
@@ -40,5 +42,6 @@
         <TextBlock x:Name="DeaprtureDate" TextAlignment="Center" FontFamily="Calibri" FontSize="14" Grid.Column="3" Grid.Row="9"/>
         <TextBlock x:Name="HotelsCostI" Text="Стоимость проживания: " FontFamily="Calibri" FontSize="14" Grid.Column="1" Grid.Row="11"/>
         <TextBlock x:Name="HotelsCost" TextAlignment="Center" FontFamily="Calibri" FontSize="14" Grid.Column="3" Grid.Row="11"/>
+        <Button x:Name="Info" FontFamily="Calibri" FontSize="14" Grid.Column="3" Grid.Row="13" Content="Подробнее" />
     </Grid>
 </UserControl>

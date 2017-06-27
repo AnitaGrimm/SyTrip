@@ -1,30 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="дипломная_работа.Model.Result">
-    <Position X="0.5" Y="0.5" Width="3" />
+    <Position X="7.75" Y="0.75" Width="4.25" />
     <TypeIdentifier>
-      <HashCode>AQAAAIABAAAEAAJEAEAAAAAgAAACAgAIAAAAAAAAAQA=</HashCode>
+      <HashCode>AQAAAAABAAAUABNEIEIAAAAgAAAAAAAAAAAAAABAAQA=</HashCode>
       <FileName>Model\Result.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="дипломная_работа.Model.ResultItem">
-    <Position X="1" Y="1" Width="4.75" />
+    <Position X="12" Y="1.25" Width="4.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAQAgBAAAoEAAAAAAAAQAQAAAAAAQgQAAAgAAA=</HashCode>
+      <HashCode>gAAAAAAQAgAAABgEAAIAAAAgAAAAAAAEAAgQAAAgQAA=</HashCode>
       <FileName>Model\ResultItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="дипломная_работа.Model.Town">
     <Position X="4" Y="1.25" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>ABCAAAAAACAAAAAEAAAgAAQAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>ABCAAAAAACAAAAAEAAAgAAQAIQAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Town.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="дипломная_работа.Model.Querry">
     <Position X="1.25" Y="1.25" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAAAAAAAAAAACAAAAACAAASAACAABAAAEAgAA=</HashCode>
+      <HashCode>EABAAAAAAAAgAAQAAACAAAAACAAASAACAABAAAEAgAA=</HashCode>
       <FileName>Model\Querry.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -43,17 +43,52 @@
     </TypeIdentifier>
   </Class>
   <Class Name="дипломная_работа.Helpers.WebTools">
-    <Position X="0.75" Y="0.75" Width="4.75" />
+    <Position X="5.75" Y="0.75" Width="4.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Helpers\WebTools.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="дипломная_работа.Helpers.DataLoader">
-    <Position X="1.25" Y="2.75" Width="7.25" />
+    <Position X="2.5" Y="2.75" Width="7.25" />
     <TypeIdentifier>
-      <HashCode>AAAAgAAAAIAAAAgBAAAAAAAAAAAABAAAAAAgAAAACAA=</HashCode>
+      <HashCode>AAAAgAAgAIAAAAgBAAAAAAAAAAAABAAAAAAgAAAAAAA=</HashCode>
       <FileName>Helpers\DataLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="дипломная_работа.Helpers.Computer">
+    <Position X="1.25" Y="5.75" Width="7.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAWEABAAABAAABDAAAAgAAcAAAAAADAI=</HashCode>
+      <FileName>Helpers\Computer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="дипломная_работа.Helpers.DateRangeForHotel">
+    <Position X="9.25" Y="6" Width="8" />
+    <TypeIdentifier>
+      <HashCode>EgCAAEABAgAAAAAAgAAAAAACAAQISAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\Computer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="дипломная_работа.Helpers.CurrencyConverter" Collapsed="true">
+    <Position X="0.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\WebTools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="дипломная_работа.Helpers.Tools">
+    <Position X="1" Y="1" Width="5.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Helpers\Tools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="дипломная_работа.Resources.CommonData">
+    <Position X="2" Y="2" Width="3" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAABAAAAAAFAAAAAAQAAAQAAgAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Resources\CommonData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

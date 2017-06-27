@@ -29,18 +29,18 @@ namespace дипломная_работа.Controls
         {
             InitializeComponent();
         }
-        public void SetData(SliceInfo slice)
+        public void SetData(SegmentInfo Segment)
         {
-            var or = CommonData.Airports.Where(x => x.Code == slice.Segment[0].Leg[0].Origin).FirstOrDefault();
-            Origin.Text = or==null?slice.Segment[0].Leg[0].Origin:(or.Name_rus==""? or.Name: or.Name_rus);
-            var dest = CommonData.Airports.Where(x => x.Code == slice.Segment[0].Leg[0].Destination).FirstOrDefault();
-            Destination.Text = dest == null ? slice.Segment[0].Leg[0].Destination : (dest.Name_rus == "" ? dest.Name : dest.Name_rus);
-            var depdate = Computer.ParseDateTime(slice.Segment[0].Leg[0].DepartureTime);
-            var ardate = Computer.ParseDateTime(slice.Segment[0].Leg[0].ArrivalTime);
+            var or = CommonData.Airports.Where(x => x.Code == Segment.Leg[0].Origin).FirstOrDefault();
+            Origin.Text = or==null?Segment.Leg[0].Origin:(or.Name_rus==""? or.Name: or.Name_rus);
+            var dest = CommonData.Airports.Where(x => x.Code == Segment.Leg[0].Destination).FirstOrDefault();
+            Destination.Text = dest == null ? Segment.Leg[0].Destination : (dest.Name_rus == "" ? dest.Name : dest.Name_rus);
+            var depdate = Computer.ParseDateTime(Segment.Leg[0].DepartureTime);
+            var ardate = Computer.ParseDateTime(Segment.Leg[0].ArrivalTime);
             DepDate.Text = string.Format("{0}-{1}-{2} {3}:{4}", (depdate.Day < 10 ? "0" : "") + depdate.Day, (depdate.Month < 10 ? "0" : "") + depdate.Month, depdate.Year, (depdate.Hour < 10 ? "0" : "") + depdate.Hour, (depdate.Minute < 10 ? "0" : "") + depdate.Minute);
             ArDate.Text = string.Format("{0}-{1}-{2} {3}:{4}", (ardate.Day < 10 ? "0" : "") + ardate.Day, (ardate.Month < 10 ? "0" : "") + ardate.Month, ardate.Year, (ardate.Hour < 10 ? "0" : "") + ardate.Hour, (ardate.Minute < 10 ? "0" : "") + ardate.Minute);
-            Carrier.Source = DataLoader.getLogoAirport(200, 200, slice.Segment[0].Flight.Carrier);
-            Cabin.Text = TranslateCabin(slice.Segment[0].Cabin);
+            Carrier.Source = DataLoader.getLogoAirport(200, 200, Segment.Flight.Carrier);
+            Cabin.Text = TranslateCabin(Segment.Cabin);
         }
 
         private string TranslateCabin(string cabin)
@@ -57,6 +57,7 @@ namespace дипломная_работа.Controls
 
         private double ParseRub(string saleTotal)
         {
+            Tools.SetNumberDecimalSeparator();
             var rx = new Regex("[^0-9]*(?<val>[0-9]*(.[0-9])?)");
             var match = rx.Match(saleTotal);
             return double.Parse(match.Groups["val"].Value);

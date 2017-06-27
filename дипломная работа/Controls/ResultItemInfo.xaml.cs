@@ -75,9 +75,12 @@ namespace дипломная_работа.Controls
                     {
 
                     }
-                    HotelsCostI.Text = HotelCost + " руб";
+                    HotelsCostI.Text = String.Format("{0:f2} руб", HotelCost);
                 }
-                else HotelsCostI.Visibility = Visibility.Collapsed;
+                else
+                {
+                    HotelsCostI.Visibility = Info.Visibility = Visibility.Collapsed;
+                }
             }
             catch { }
         }

@@ -29,6 +29,7 @@ namespace дипломная_работа.Helpers
         public static List<Country> Load(ref ProgressBar pb)
         {
             var WebClient = new WebClient();
+            Tools.SetNumberDecimalSeparator();
             var Countries = LoadCountries(WebClient, ref pb);
             var Towns = LoadTowns(WebClient, ref pb);
             var Airports = LoadAirports(WebClient, ref pb);
@@ -77,6 +78,7 @@ namespace дипломная_работа.Helpers
                 Town.Code = match.Groups["code"].Value;
                 Town.Time_zone = match.Groups["time_zone"].Value;
                 Town.Name = match.Groups["name"].Value;
+
                 Town.Coordinates = new Coordinates() { longitude = double.Parse(match.Groups["lon"].Value==""?"0": match.Groups["lon"].Value), latitude = double.Parse(match.Groups["lat"].Value==""?"0": match.Groups["lat"].Value) };
                 var rusmatch = rus.Match(match.Groups["translations"].Value);
                 if (rusmatch.Success)

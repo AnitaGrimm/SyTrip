@@ -11,12 +11,17 @@
           <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
         </TypeIdentifier>
       </Class>
-      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Room">
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Room" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
         </TypeIdentifier>
       </Class>
-      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Price">
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Price" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Quadrat" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
         </TypeIdentifier>
@@ -26,7 +31,7 @@
           <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
         </TypeIdentifier>
       </Class>
-      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Result">
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Result" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
         </TypeIdentifier>
@@ -36,12 +41,12 @@
           <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
         </TypeIdentifier>
       </Class>
-      <Class Name="дипломная_работа.Helpers.AmadeusAPI.RoomTypeInfo">
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.RoomTypeInfo" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
         </TypeIdentifier>
       </Class>
-      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Querry">
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Querry" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
         </TypeIdentifier>
@@ -66,16 +71,30 @@
           <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
         </TypeIdentifier>
       </Class>
-      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Rate">
+      <Class Name="дипломная_работа.Helpers.AmadeusAPI.Rate" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>Helpers\AmadeusAPI.cs</NewMemberFileName>
         </TypeIdentifier>
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAQAAAAAAEAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAABAAAAEAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Helpers\AmadeusAPI.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="дипломная_работа.Model.Querry">
+    <Position X="8.25" Y="1.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>EABAAAAAAAAgAAQAAACAAAAACAAASAACAABAAAEAgAA=</HashCode>
+      <FileName>Model\Querry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="дипломная_работа.Model.Cabin">
+    <Position X="11.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAQACAAAAAAAAAAAAAAAEAQAAAAA=</HashCode>
+      <FileName>Model\Querry.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

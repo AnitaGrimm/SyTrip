@@ -174,24 +174,28 @@ namespace дипломная_работа.Helpers
             }
             return dates;
         }
-        private List<Result> GetResult(List<Stop> Order, Querry Querry,  TripsSearchResponse tripsSearchResponse)
-        {
-            return GetResultsOneType(Order, Querry, tripsSearchResponse);
-        }
-        private List<Result> GetResultsOneType(List<Stop> Order, Querry Querry, TripsSearchResponse tripsSearchResponse)
+        //private List<Result> GetResult(List<Stop> Order, Querry Querry,  TripsSearchResponse tripsSearchResponse)
+        //{
+        //    return GetResultsOneType(Order, Querry, tripsSearchResponse);
+        //}
+        private List<Result> GetResult(List<Stop> Order, Querry Querry, TripsSearchResponse tripsSearchResponse)
         {
             List<Result> result = new List<Result>();
             var infos = tripsSearchResponse.Trips.TripOption;
             foreach (var item in infos)
              {
-                 var duration = ParseDateTime(item.Slice[item.Slice.Count - 1].Segment[0].Leg[0].ArrivalTime) - ParseDateTime(item.Slice[0].Segment[0].Leg[0].DepartureTime);
-                 if (duration.TotalDays <= Querry.MaxDayCount)
-                 {
-                     var res = new Result(item, Querry, Order);
-                     var cost = res.GetCost();
-                     if (cost <= Querry.Budget)
-                         result.Add(res);
-                 }
+                try
+                {
+                    var duration = ParseDateTime(item.Slice.Last().Segment.Last().Leg[0].ArrivalTime) - ParseDateTime(item.Slice.First().Segment.First().Leg[0].DepartureTime);
+                    if (duration.TotalDays <= Querry.MaxDayCount)
+                    {
+                        var res = new Result(item, Querry, Order);
+                        var cost = res.GetCost();
+                        if (cost <= Querry.Budget)
+                            result.Add(res);
+                    }
+                }
+                catch { }
              }
             return result;
         }
@@ -276,7 +280,6 @@ namespace дипломная_работа.Helpers
                     }
                     item.Add(new Stop { Town = Querry.NativeTown, Period = new Interval(0, 0) });
                     result.AddRange(GetListForOneType(i, Querry, ref Order, item));
-                    //Order.Add(item);
                 }
             return result;
         }

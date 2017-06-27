@@ -33,7 +33,7 @@ namespace дипломная_работа
         {
             if (Results != null)
             {
-                rc = new List<ResultControl>();
+                current = rc = new List<ResultControl>();
                 foreach (var result in Results)
                     rc.Add(new ResultControl(result));
             }
@@ -62,9 +62,6 @@ namespace дипломная_работа
                 string s = item.ToString();
                 var days = item.EndDate.Subtract(item.BeginDate).TotalDays;
                 var cost = item.GetCost();
-                item.IsMinDays = days == MaxDays;
-                item.IsMinCost = cost == MinVal;
-                item.IsMinDaysCost = cost / days == MinDayCost;
             }
             if (Results != null)
             {
@@ -194,8 +191,8 @@ namespace дипломная_работа
             {
                 var list = rc.ToList();
                 var res1 = list.Where(rc => Ifrating(rc,r1.IsChecked,r2.IsChecked, r3.IsChecked, r4.IsChecked, r5.IsChecked)).ToList();
-                var res3 = list.Where(rc => Ifdatebeg(rc, ismodep.IsChecked, isdadep.IsChecked, isevdep.IsChecked)).ToList();
-                var res4 = list.Where(rc => Ifdatebeg(rc, ismoar.IsChecked, isdaar.IsChecked, isavar.IsChecked)).ToList();
+                var res3 = list.Where(rc => Ifdatebeg(rc, ismodep.IsChecked, isdadep.IsChecked, isevdep.IsChecked, isnidep.IsChecked)).ToList();
+                var res4 = list.Where(rc => Ifdatend(rc, ismoar.IsChecked, isdaar.IsChecked, isavar.IsChecked, isniar.IsChecked)).ToList();
                 LBox.ItemsSource = current = res1.Where(x => res3.IndexOf(x) != -1 && res4.IndexOf(x) != -1).ToList();
             }
             catch
@@ -207,37 +204,41 @@ namespace дипломная_работа
         {
             bool res = false;
             if (r1.HasValue && r1.Value)
-                res |= Math.Round(rc.Result.AverageHotelRating) == 1;
+                res |= Math.Ceiling(rc.Result.AverageHotelRating) <= 1;
             if (r2.HasValue && r2.Value)
-                res |= Math.Round(rc.Result.AverageHotelRating) == 2;
+                res |= Math.Ceiling(rc.Result.AverageHotelRating) == 2;
             if (r3.HasValue && r3.Value)
-                res |= Math.Round(rc.Result.AverageHotelRating) == 3;
+                res |= Math.Ceiling(rc.Result.AverageHotelRating) == 3;
             if (r4.HasValue && r4.Value)
-                res |= Math.Round(rc.Result.AverageHotelRating) == 4;
+                res |= Math.Ceiling(rc.Result.AverageHotelRating) == 4;
             if (r5.HasValue && r5.Value)
-                res |= Math.Round(rc.Result.AverageHotelRating) == 5;
+                res |= Math.Ceiling(rc.Result.AverageHotelRating) == 5;
             return res; 
         }
-        bool Ifdatebeg(ResultControl rc, bool? ismodep, bool? isdadep, bool? isevdep)
+        bool Ifdatebeg(ResultControl rc, bool? ismodep, bool? isdadep, bool? isevdep, bool? isnidep)
         {
             bool res = false;
             if (ismodep.HasValue && ismodep.Value)
-                res |= rc.Result.BeginDate.Hour < 12;
+                res |= rc.Result.BeginDate.Hour >= 6 && rc.Result.BeginDate.Hour < 12;
             if (isdadep.HasValue && isdadep.Value)
-                res |= rc.Result.BeginDate.Hour >= 12 && rc.Result.BeginDate.Hour < 16;
+                res |= rc.Result.BeginDate.Hour >= 12 && rc.Result.BeginDate.Hour < 18;
             if (isevdep.HasValue && isevdep.Value)
-                res |= rc.Result.BeginDate.Hour >= 16;
+                res |= rc.Result.BeginDate.Hour >= 18 && rc.Result.BeginDate.Hour < 24;
+            if (isnidep.HasValue && isnidep.Value)
+                res |= rc.Result.BeginDate.Hour >= 0 && rc.Result.BeginDate.Hour < 6;
             return res;
         }
-        bool Ifdatend(ResultControl rc, bool? ismoar, bool? isdaar, bool? isevar)
+        bool Ifdatend(ResultControl rc, bool? ismoar, bool? isdaar, bool? isevar, bool? isniar)
         {
             bool res = false;
             if (ismoar.HasValue && ismoar.Value)
-                res |= rc.Result.BeginDate.Hour < 12;
+                res |= rc.Result.EndDate.Hour >= 6 && rc.Result.EndDate.Hour < 12;
             if (isdaar.HasValue && isdaar.Value)
-                res |= rc.Result.BeginDate.Hour >= 12 && rc.Result.BeginDate.Hour < 16;
+                res |= rc.Result.EndDate.Hour >= 12 && rc.Result.EndDate.Hour < 18;
             if (isevar.HasValue && isevar.Value)
-                res |= rc.Result.BeginDate.Hour >= 16;
+                res |= rc.Result.EndDate.Hour >= 18 && rc.Result.EndDate.Hour < 24;
+            if (isniar.HasValue && isniar.Value)
+                res |= rc.Result.EndDate.Hour >= 0 && rc.Result.EndDate.Hour < 6;
             return res;
         }
     }

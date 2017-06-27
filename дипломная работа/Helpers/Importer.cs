@@ -16,6 +16,7 @@ namespace дипломная_работа.Helpers
         Word._Document document;
         public Importer()
         {
+            Tools.SetNumberDecimalSeparator();
             application = new Word.Application();
             try
             {
@@ -37,23 +38,28 @@ namespace дипломная_работа.Helpers
 
             Word.Range rng = document.Range(ref start, ref end);
             rng.Text = "Маршрут: "+Environment.NewLine+Result.GetDescription() + Environment.NewLine;
-            rng.Text += "Итоговая стоимость: " + (Result.GetCost()+infos.Sum(x=>x.HotelCost)) + Environment.NewLine + Environment.NewLine;
-            rng.Text += "Авиабилеты :" + Environment.NewLine;
+            rng.Text += "Итоговая стоимость: " + String.Format("{0:f2} рублей",Result.GetCost()) + Environment.NewLine + Environment.NewLine;
+            rng.Text += "Авиабилеты:" + Environment.NewLine;
             int i = 1;
             foreach(var item in Result.Route)
             {
                 if (item.ArrivalInfo == null)
                     continue;
                 var to = item.ArrivalInfo;
-                rng.Text += i + ") ";
-                Airport origin = CommonData.Airports.Where(a => a.Code == to.Segment[0].Leg[0].Origin).FirstOrDefault(), destinamion = CommonData.Airports.Where(a => a.Code == to.Segment[0].Leg[0].Destination).FirstOrDefault();
-                rng.Text += "   " + (origin.Name_rus==""? origin.Name: origin.Name_rus) + " " + to.Segment[0].Leg[0].OriginTerminal + "-" + (destinamion.Name_rus == ""? destinamion.Name: destinamion.Name_rus) + " " + to.Segment[0].Leg[0].DestinationTerminal + Environment.NewLine;
-                var depTime = Computer.ParseDateTime(to.Segment[0].Leg[0].DepartureTime);
-                var ArTime = Computer.ParseDateTime(to.Segment[0].Leg[0].ArrivalTime);
-                rng.Text += "   Дата вылета: " + depTime.ToShortDateString() + " " + depTime.ToShortTimeString() + Environment.NewLine;
-                rng.Text += "   Дата посадки: " + ArTime.ToShortDateString() + " " + ArTime.ToShortTimeString() + Environment.NewLine;
-                rng.Text += "   Класс: " + to.Segment[0].Cabin + Environment.NewLine;
-                rng.Text += "   Авиакомпания: " + to.Segment[0].Flight.Carrier + Environment.NewLine;
+                rng.Text += i + ") " + (item.ArrivalInfo.Segment.Count-1).ToString() + " пересадок";
+                int k = 1;
+                foreach(var segment in to.Segment)
+                {
+                    Airport origin = CommonData.Airports.Where(a => a.Code == segment.Leg[0].Origin).FirstOrDefault(), destinamion = CommonData.Airports.Where(a => a.Code == segment.Leg[0].Destination).FirstOrDefault();
+                    rng.Text += "       "+k+". " + (origin.Name_rus == "" ? origin.Name : origin.Name_rus) + " " + segment.Leg[0].OriginTerminal + "-" + (destinamion.Name_rus == "" ? destinamion.Name : destinamion.Name_rus) + " " + segment.Leg[0].DestinationTerminal + Environment.NewLine;
+                    var depTime = Computer.ParseDateTime(segment.Leg[0].DepartureTime);
+                    var ArTime = Computer.ParseDateTime(segment.Leg[0].ArrivalTime);
+                    rng.Text += "       Дата вылета: " + depTime.ToShortDateString() + " " + depTime.ToShortTimeString() + Environment.NewLine;
+                    rng.Text += "       Дата посадки: " + ArTime.ToShortDateString() + " " + ArTime.ToShortTimeString() + Environment.NewLine;
+                    rng.Text += "       Класс: " + segment.Cabin + Environment.NewLine;
+                    rng.Text += "       Авиакомпания: " + segment.Flight.Carrier + Environment.NewLine;
+                    k++;
+                }
                 i++;
             }
             rng.Text += Environment.NewLine + "Отели:" + Environment.NewLine;

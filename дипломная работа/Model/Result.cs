@@ -21,7 +21,6 @@ namespace дипломная_работа.Model
         public TripOption currenttrip;
         private Querry querry;
         private List<Stop> order;
-        public bool IsMinDays = false, IsMinCost = false, IsMinDaysCost = false;
         public double HotelCost =0;
         public double FlightCostTotal = 0;
         public double AverageHotelRating = 0;
@@ -45,15 +44,23 @@ namespace дипломная_работа.Model
                 if (town != -1)
                 {
                     res.tripOpt = currenttrip;
-                    res.ArrivalDate = Computer.ParseDateTime(currenttrip.Slice[town].Segment[0].Leg[0].ArrivalTime);
-                    res.ArrivalPlace = CommonData.Airports.Where(a => a.Code == currenttrip.Slice[town].Segment[0].Leg[0].Destination).FirstOrDefault();
+                    try
+                    {
+                        res.ArrivalDate = Computer.ParseDateTime(currenttrip.Slice[town].Segment.Last().Leg[0].ArrivalTime);
+                        res.ArrivalPlace = CommonData.Airports.Where(a => a.Code == currenttrip.Slice[town].Segment.Last().Leg[0].Destination).FirstOrDefault();
+                    }
+                    catch { }
                     res.ArrivalInfo = currenttrip.Slice[town];
                 }
                 if (town + 1 < order.Count - 1)
                 {
-                    res.DepatureDate = Computer.ParseDateTime(currenttrip.Slice[town + 1].Segment[0].Leg[0].DepartureTime);
+                    try
+                    {
+                        res.DepatureDate = Computer.ParseDateTime(currenttrip.Slice[town + 1].Segment.First().Leg[0].DepartureTime);
+                        res.DeparturePlace = CommonData.Airports.Where(a => a.Code == currenttrip.Slice[town + 1].Segment.First().Leg[0].Origin).FirstOrDefault();
+                    }
+                    catch { }
                     res.DepartureInfo = currenttrip.Slice[town + 1];
-                    res.DeparturePlace = CommonData.Airports.Where(a => a.Code == currenttrip.Slice[town+1].Segment[0].Leg[0].Origin).FirstOrDefault();
                 }
                 town++;
                 Route.Add(res);
@@ -71,12 +78,12 @@ namespace дипломная_работа.Model
             HotelCost = res.HotelCost;
             FlightCostTotal = res.FlightCostTotal;
             AverageHotelRating = res.AverageHotelRating;
-            IsMinCost = res.IsMinCost; IsMinDays = res.IsMinDays; IsMinDaysCost = res.IsMinDaysCost;
-            Route = res.Route.Select(x => new ResultItem() { Airport = x.Airport, ArrivalDate = x.ArrivalDate, ArrivalInfo = x.ArrivalInfo, ArrivalPlace = x.ArrivalPlace, DayCost = x.DayCost, DaysCount = x.DaysCount, DepartureInfo = x.DepartureInfo, DeparturePlace = x.DeparturePlace, DepatureDate = x.DepatureDate, rooms = x.rooms, Town = x.Town, tripOpt = x.tripOpt }).ToList();
+            Route = res.Route.Select(x => new ResultItem() { ArrivalDate = x.ArrivalDate, ArrivalInfo = x.ArrivalInfo, ArrivalPlace = x.ArrivalPlace, DayCost = x.DayCost, DaysCount = x.DaysCount, DepartureInfo = x.DepartureInfo, DeparturePlace = x.DeparturePlace, DepatureDate = x.DepatureDate, rooms = x.rooms, Town = x.Town, tripOpt = x.tripOpt }).ToList();
         }
         
         private double ParseRub(string saleTotal)
         {
+            Tools.SetNumberDecimalSeparator();
             var rx = new Regex("[^0-9]*(?<val>[0-9]*(.[0-9])?)");
             var match = rx.Match(saleTotal);
             return double.Parse(match.Groups["val"].Value);
@@ -123,18 +130,15 @@ namespace дипломная_работа.Model
             var ticketsCost = GetCost();
             s += Environment.NewLine + "Стоимость отелей: "  + string.Format("{0:f2}", HotelCost) + " RUB" + Environment.NewLine;
             s += "Итого: " + string.Format("{0:f2}",ticketsCost + HotelCost) + " RUB" + Environment.NewLine;
-            if (IsMinDays)
-                s += "(Макс. кол-во дней)";
-            if (IsMinCost)
-                s += "(Мин. стоимость)";
-            if (IsMinDaysCost)
-                s += "(Мин. стоимость на день)";
             return s;
         }
 
         public double GetAverageHotelRating()
         {
-            return Route?.First()?.AverageHotelRating??0;
+            var a = Route.Where(r => r.AverageHotelRating != 0)?.ToList();
+            if (a != null && a.Count != 0)
+                return a.Average(r => r.AverageHotelRating);
+            return 0;
         }
     }
 }

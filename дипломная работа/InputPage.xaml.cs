@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using дипломная_работа.Controls;
+using дипломная_работа.Helpers;
 using дипломная_работа.Model;
 using дипломная_работа.Resources;
 
@@ -62,6 +63,7 @@ namespace дипломная_работа
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
         {
+            Tools.SetNumberDecimalSeparator();
             TextBox tb = (TextBox)sender;
             double i;
             if (tb.Text != "" && double.TryParse(tb.Text, out i))

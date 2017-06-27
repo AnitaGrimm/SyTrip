@@ -44,9 +44,12 @@ namespace дипломная_работа.Controls
             }
             foreach(var slice in Result.currenttrip.Slice)
             {
-                var finfo = new FlightInfoMini();
-                finfo.SetData(slice);
-                Flights.Add(finfo);
+                foreach (var segment in slice.Segment)
+                {
+                    var finfo = new FlightInfoMini();
+                    finfo.SetData(segment);
+                    Flights.Add(finfo);
+                }
             }
             FlightInfoList.ItemsSource = Flights;
             TownInfoList.ItemsSource = Towns;

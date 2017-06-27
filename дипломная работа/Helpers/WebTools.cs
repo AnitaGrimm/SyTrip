@@ -55,9 +55,10 @@ namespace дипломная_работа.Helpers
         public List<Price> ValuesToRub { get; private set; } = new List<Price>();
         public CurrencyConverter()
         {
+            Tools.SetNumberDecimalSeparator();
             if (!WebTools.ConnectionAvailable("http://www.google.com"))
             {
-                //return;
+                return;
             }
             var wb = new WebClient();
             string s = Encoding.UTF8.GetString(wb.DownloadData("http://yasen.aviasales.ru/adaptors/currency.json"));

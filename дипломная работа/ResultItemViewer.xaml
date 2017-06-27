@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:дипломная_работа"
       xmlns:controls="clr-namespace:дипломная_работа.Controls"
       mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="500"
+      d:DesignHeight="500" d:DesignWidth="500"
       Title="ResultItemViewer">
 
     <Grid Background="LightGray">
@@ -42,16 +42,15 @@
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="5"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="100"/>
                 <RowDefinition Height="5"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="100"/>
                 <RowDefinition Height="5"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="10"/>
             </Grid.RowDefinitions>
             <TextBlock  Grid.Column="1" Grid.Row="1" x:Name="TownName" FontFamily="Calibri" FontSize="14" />
-            <controls:FlightInfoMini x:Name="i1" Grid.Column="1" Grid.Row="3"/>
-            <controls:FlightInfoMini x:Name="i2" Grid.Column="1" Grid.Row="5"/>
+            <ListBox x:Name="lb" Grid.Column="1" Grid.Row="3" Grid.RowSpan="3" Background="Transparent"/>
             <ListBox x:Name="HotelInfoViewer" Grid.Column="3" FontFamily="Calibri" FontSize="14" Grid.Row="3" Grid.RowSpan="5" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Hidden" SelectionChanged="HotelInfoViewer_SelectionChanged"/>
             <WebBrowser x:Name="wb" Grid.Column="1" Grid.Row="7"/>
         </Grid>

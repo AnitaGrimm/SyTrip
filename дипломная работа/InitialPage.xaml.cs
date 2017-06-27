@@ -32,10 +32,6 @@ namespace дипломная_работа
         public InitialPage(Frame MainFrame, MainWindow mw)
         {
             InitializeComponent();
-            CultureInfo curCulture = Thread.CurrentThread.CurrentCulture;
-            CultureInfo newCulture = new CultureInfo(curCulture.Name);
-            newCulture.NumberFormat.NumberDecimalSeparator = ".";
-            Thread.CurrentThread.CurrentCulture = newCulture;
             this.MainFrame = MainFrame;
             this.mw = mw;
             Loading();

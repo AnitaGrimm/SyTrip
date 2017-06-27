@@ -44,7 +44,7 @@
                 <RowDefinition Height="10"/>
             </Grid.RowDefinitions>
             <TextBlock x:Name="tb" FontFamily="Calibri" FontSize="14" TextWrapping="Wrap" TextAlignment="Justify" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3"></TextBlock>
-            <TextBlock FontFamily="Calibri" FontSize="14"  Grid.Column="3" Grid.Row="1" Text="Итого:" HorizontalAlignment="Right"/>
+            <TextBlock FontFamily="Calibri" FontSize="14"  Grid.Column="3" Grid.Row="1" Text="итого:" HorizontalAlignment="Right"/>
             <TextBlock x:Name="cost" FontFamily="Calibri" FontSize="14"  Grid.Column="5" Grid.Row="1" />
             <Button Content="Выгрузить в Word" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="3" FontFamily="Calibri" FontSize="14" Click="Button_Click_1"/>
         </Grid>

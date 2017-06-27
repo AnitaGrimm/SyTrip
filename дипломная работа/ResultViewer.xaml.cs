@@ -96,16 +96,11 @@ namespace дипломная_работа
         {
             if (HotelCosts.IndexOf(-1) != -1)
                 return;
-            cost.Text = String.Format("{0:f2}", HotelCosts.Sum() + flightcost);
+            cost.Text = String.Format("{0:f2}", Result.GetCost());
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (HotelCosts.IndexOf(-1) != -1)
-            {
-                MessageBox.Show("Пожалуйста, выберите отели!");
-                return;
-            }
             Importer im = new Importer();
             im.MakeReport(Result, Querry, infos);
         }
