@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:дипломная_работа"
+      xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
       xmlns:controls="clr-namespace:дипломная_работа.Controls"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="500"
@@ -52,7 +53,8 @@
             <TextBlock  Grid.Column="1" Grid.Row="1" x:Name="TownName" FontFamily="Calibri" FontSize="14" />
             <ListBox x:Name="lb" Grid.Column="1" Grid.Row="3" Grid.RowSpan="3" Background="Transparent"/>
             <ListBox x:Name="HotelInfoViewer" Grid.Column="3" FontFamily="Calibri" FontSize="14" Grid.Row="3" Grid.RowSpan="5" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Hidden" SelectionChanged="HotelInfoViewer_SelectionChanged"/>
-            <WebBrowser x:Name="wb" Grid.Column="1" Grid.Row="7"/>
+            <!--<WebBrowser x:Name="wb" Grid.Column="1" Grid.Row="7"/>-->
+            <cefSharp:ChromiumWebBrowser x:Name="wb" Grid.Column="1" Grid.Row="7"></cefSharp:ChromiumWebBrowser>
         </Grid>
         <Image Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3"  Source="Resources/logo.gif"/>
     </Grid>

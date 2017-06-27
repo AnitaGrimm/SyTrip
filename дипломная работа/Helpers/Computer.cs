@@ -126,7 +126,7 @@ namespace дипломная_работа.Helpers
             ResWithhotels = ResWithhotels = ResWithhotels.Where(
                 x => x.HotelCost + x.FlightCostTotal <= Querry.Budget
                 ).ToList();
-            return ResWithhotels;
+            return ResWithhotels.Take(500).ToList();
         }
         public List<Result> GetResWithHotels(Result res, List<DateRangeForHotel> dates)
         {

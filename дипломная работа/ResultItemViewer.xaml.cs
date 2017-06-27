@@ -1,20 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using дипломная_работа.Controls;
-using дипломная_работа.Helpers;
 using дипломная_работа.Model;
+
 
 namespace дипломная_работа
 {
@@ -35,22 +26,29 @@ namespace дипломная_работа
             this.info = info;
             this.numdouble = numdouble;
             List<FlightInfoMini> fl = new List<FlightInfoMini>();
-            foreach(var slice in res.currenttrip.Slice)
-                foreach(var segment in slice.Segment)
-                    try
-                    {
-                        FlightInfoMini fim = new FlightInfoMini();
-                        fim.SetData(segment);
-                        fl.Add(fim);
-                    }
-                    catch { }
+            foreach (var segment in info.resItem.ArrivalInfo.Segment)
+                try
+                {
+                    FlightInfoMini fim = new FlightInfoMini();
+                    fim.SetData(segment);
+                    fl.Add(fim);
+                }
+                catch { }
+            foreach (var segment in info.resItem.DepartureInfo.Segment)
+                try
+                {
+                    FlightInfoMini fim = new FlightInfoMini();
+                    fim.SetData(segment);
+                    fl.Add(fim);
+                }
+                catch { }
             lb.ItemsSource = fl;
             List<HotelInfo> hotelinfos = new List<HotelInfo>();
             foreach (var room in info.Rooms)
                 hotelinfos.Add(new HotelInfo(room));
             HotelInfoViewer.ItemsSource = hotelinfos;
             var hot = info.Rooms.FirstOrDefault().hotel;
-            wb.Source = new Uri(@"http://maps.google.com/?q=" + hot.address.city + "+" + hot.address.line1 + hot.property_name,UriKind.Absolute);
+            wb.Address = @"http://maps.google.com/?q=" + hot.address.city + "+" + hot.address.line1 +"+" + hot.property_name;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -70,7 +68,7 @@ namespace дипломная_работа
                 try
                 {
                     var hot = hi.Room.hotel;
-                    wb.Source = new Uri(@"http://maps.google.com/?q=" + hot.address.city + "+" + hot.address.line1 + hot.property_name, UriKind.Absolute);
+                    wb.Address=@"http://maps.google.com/?q=" + hot.address.city + "+" + hot.address.line1 +"+"+ hot.property_name;
                 }
                 catch
                 {
