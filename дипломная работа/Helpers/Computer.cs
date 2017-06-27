@@ -16,7 +16,7 @@ namespace дипломная_работа.Helpers
 {
     class Computer
     {
-        int servicecount = 6;
+        int servicecount = 0;
         public Computer() { }
         List<QPXExpressService> service = new List<Google.Apis.QPXExpress.v1.QPXExpressService>(){
             new QPXExpressService(new BaseClientService.Initializer()
@@ -57,6 +57,11 @@ namespace дипломная_работа.Helpers
         new QPXExpressService(new BaseClientService.Initializer()
         {
             ApiKey = "AIzaSyBO15z6247OCnuGCy_0_6dKh6rVP3JXuJo",
+            ApplicationName = "Daimto QPX Express Sample",
+        }),
+        new QPXExpressService(new BaseClientService.Initializer()
+        {
+            ApiKey = "AIzaSyB-_ZxhPxgkVT9imQWuP8bou5X0QCo87Io",
             ApplicationName = "Daimto QPX Express Sample",
         })
         };
