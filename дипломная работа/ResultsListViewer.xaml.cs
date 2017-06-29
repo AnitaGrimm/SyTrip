@@ -203,16 +203,17 @@ namespace дипломная_работа
         bool Ifrating( ResultControl rc, bool? r1, bool? r2, bool? r3, bool? r4, bool? r5)
         {
             bool res = false;
+            int val = (int)Math.Round(rc.Result.AverageHotelRating);
             if (r1.HasValue && r1.Value)
-                res |= Math.Ceiling(rc.Result.AverageHotelRating) <= 1;
+                res |=  val<= 1;
             if (r2.HasValue && r2.Value)
-                res |= Math.Ceiling(rc.Result.AverageHotelRating) == 2;
+                res |= val <= 2 && val > 1;
             if (r3.HasValue && r3.Value)
-                res |= Math.Ceiling(rc.Result.AverageHotelRating) == 3;
+                res |= val <= 3 && val > 4;
             if (r4.HasValue && r4.Value)
-                res |= Math.Ceiling(rc.Result.AverageHotelRating) == 4;
+                res |= val <= 4 && val > 5;
             if (r5.HasValue && r5.Value)
-                res |= Math.Ceiling(rc.Result.AverageHotelRating) == 5;
+                res |= val == 5;
             return res; 
         }
         bool Ifdatebeg(ResultControl rc, bool? ismodep, bool? isdadep, bool? isevdep, bool? isnidep)

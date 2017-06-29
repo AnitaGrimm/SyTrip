@@ -75,7 +75,7 @@ namespace дипломная_работа.Controls
                     {
 
                     }
-                    HotelsCostI.Text = String.Format("{0:f2} руб", HotelCost);
+                    HotelsCost.Text = String.Format("{0:f2} руб", HotelCost);
                 }
                 else
                 {

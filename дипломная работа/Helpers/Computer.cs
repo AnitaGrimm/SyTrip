@@ -338,7 +338,7 @@ namespace дипломная_работа.Helpers
             res.Origin = Querry[th - 1].Town.Code;
             res.Destination = Querry.NativeTown.Code;
             res.PreferredCabin = GetCabin(Querry.prefferedCabin);
-            date = date.AddDays((double)numdays[th - 1] + 1);
+            date = date.AddDays((double)numdays[th - 1]);
             res.Date = date.Year + "-" + (date.Month < 10 ? "0" : "") + date.Month + "-" + (date.Day < 10 ? "0" : "") + date.Day;
             resultEthalon.Add(res);
             return resultEthalon;

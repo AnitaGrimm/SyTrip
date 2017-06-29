@@ -135,7 +135,7 @@ namespace дипломная_работа.Model
 
         public double GetAverageHotelRating()
         {
-            var a = Route.Where(r => r.AverageHotelRating != 0)?.ToList();
+            var a = Route.Where(r => r.AverageHotelRating!=0)?.ToList();
             if (a != null && a.Count != 0)
                 return a.Average(r => r.AverageHotelRating);
             return 0;

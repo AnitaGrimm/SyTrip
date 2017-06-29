@@ -39,6 +39,8 @@ namespace дипломная_работа.Helpers
             Word.Range rng = document.Range(ref start, ref end);
             rng.Text = "Маршрут: "+Environment.NewLine+Result.GetDescription() + Environment.NewLine;
             rng.Text += "Итоговая стоимость: " + String.Format("{0:f2} рублей",Result.GetCost()) + Environment.NewLine + Environment.NewLine;
+            rng.Text += "Стоимость авиабилетов: " + String.Format("{0:f2} рублей", Result.FlightCostTotal) + Environment.NewLine + Environment.NewLine;
+            rng.Text += "Стоимость отелей: " + String.Format("{0:f2} рублей", Result.HotelCost) + Environment.NewLine + Environment.NewLine;
             rng.Text += "Авиабилеты:" + Environment.NewLine;
             int i = 1;
             foreach(var item in Result.Route)
